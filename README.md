@@ -1,1 +1,1 @@
-# SYA-BlackLives-The-GLR-Black-London-Collection
+This repository hosts the "Reclaiming the Reel" project, dedicated to preserving and making accessible invaluable GLR Black London sound files. Explore a curated collection of audio reels focusing on the Black British experience, complete with detailed titles, descriptions, and searchable tags. It's a vital step in digital preservation, cultural heritage, and fostering a deeper understanding of social justice narratives.
