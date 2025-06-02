@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reclaiming the Reel: Unlocking the Power of the GLR Black London Archives</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333; /* Default text color - you might need to change this if the background is dark */
+
+            /* --- BACKGROUND IMAGE STYLES --- */
+            background-image: url('reels.png'); /* Make sure reels.png is in the same directory as this HTML file */
+            background-size: cover;            /* Scales the image to cover the entire body */
+            background-repeat: no-repeat;      /* Prevents the image from repeating */
+            background-position: center center; /* Centers the image */
+            background-attachment: fixed;      /* Keeps the background image fixed while scrolling */
+
+            /* Ensure body covers full viewport for absolute positioning of login-container */
+            min-height: 100vh;
+            position: relative; /* Set position for absolute child centering */
+            /* Removed display:flex, justify-content, align-items from body as login-container now uses absolute positioning */
+        }
+
+        .login-container {
+            max-width: 960px;
+            background-color: #fff; /* Opaque white for the login box */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+
+            /* --- RE-CENTERING THE LOGIN DIV --- */
+            position: absolute; /* Position relative to the body */
+            top: 50%;           /* Move top edge to middle */
+            left: 50%;          /* Move left edge to middle */
+            transform: translate(-50%, -50%); /* Shift back by half its width/height to truly center */
+            margin: auto; /* Fallback/additional centering (less impactful with absolute positioning) */
+            /* --- END RE-CENTERING --- */
+        }
+
+        /* Styles for the main content layout */
+        .main-content-wrapper {
+            display: flex; /* Use flexbox */
+            max-width: 1400px; /* Wider container to accommodate both */
+            margin: 50px auto; /* Centering and spacing for the main content area */
+
+            /* --- Semi-Transparent Background for Main Content --- */
+            background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+            /* Optional: Frosted glass effect (check browser support) */
+            /* backdrop-filter: blur(8px); */
+            /* -webkit-backdrop-filter: blur(8px); */
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden; /* Contains floated/flex items */
+            min-height: 80vh; /* Give it a minimum height to make the transparency noticeable */
+        }
+
+        .video-column {
+            flex: 2; /* Takes 2 parts of the available space */
+            padding: 20px;
+            overflow-y: auto; /* Allows scrolling if video content overflows */
+            background-color: rgba(255, 255, 255, 0.0); /* Transparent background for the column itself */
+        }
+
+        .article-column {
+            flex: 1; /* Takes 1 part of the available space */
+            padding: 20px;
+            background-color: rgba(249, 249, 249, 0.7); /* Lighter grey with 70% opacity for article */
+            border-left: 1px solid rgba(221, 221, 221, 0.5); /* Separator with some transparency */
+            overflow-y: scroll; /* Makes the article column independently scrollable */
+            max-height: 80vh; /* Set a max height to enable scrolling */
+            box-sizing: border-box; /* Include padding in the element's total width and height */
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #555;
+        }
+
+        .article-column h2,
+        .article-column h3 {
+            text-align: left; /* Adjust heading alignment for the article */
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-form input[type="text"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .login-form button {
+            background-color: #007bff;
+            color: white; /* Keeping login button text white for readability */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 44px; /* Changed to circular */
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .login-error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .featured-video {
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #000; /* This still keeps the video player background black */
+            border-radius: 8px;
+        }
+
+        .featured-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-grid {
+            /* Changed to block for list layout */
+            display: block;
+            /* Removed grid-specific properties like gap, grid-template-columns */
+        }
+
+        .video-item {
+            cursor: pointer;
+            border: 1px solid rgba(221, 221, 221, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            background-color: rgba(249, 249, 249, 0.9); /* Slightly opaque white for video items */
+            padding: 15px; /* Added padding for list items */
+            margin-bottom: 15px; /* Spacing between list items */
+            box-sizing: border-box; /* Include padding in element's total width */
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Removed .video-item img styles as thumbnails are no longer used */
+
+        .video-item-info {
+            padding: 0; /* Removed padding here as it's on .video-item now */
+        }
+
+        .video-item-info h3 {
+            font-size: 1.1em;
+            margin: 0 0 5px 0;
+            color: #333; /* --- Video Titles are now BLACK/DARK GREY --- */
+            white-space: normal;
+            word-wrap: break-word; /* Ensure long words break */
+        }
+
+        /* Description Truncation & "Read More" Styling */
+        .video-item-info p.description {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0 0 10px 0; /* Added margin below description */
+            line-height: 1.4em;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .video-item-info p.description.truncated {
+            max-height: 4.2em; /* Approx 3 lines (1.4em * 3) */
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .read-more-btn {
+            display: inline-block; /* Changed to inline-block for better flow if needed */
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            font-size: 0.85em;
+            padding: 0;
+            margin-top: 5px;
+            text-align: left;
+            text-decoration: underline;
+        }
+
+        .read-more-btn:hover {
+            color: #0056b3; /* Only change text color on hover for buttons */
+            background-color: transparent; /* Ensure background doesn't change for text buttons */
+        }
+
+        /* New style for tags */
+        .video-tags {
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #888;
+            display: flex;
+            flex-wrap: wrap; /* Allow tags to wrap to next line */
+            gap: 5px; /* Space between tags */
+        }
+
+        .video-tags span {
+            background-color: #e0e0e0;
+            padding: 3px 8px;
+            border-radius: 12px;
+            color: #555;
+            white-space: nowrap; /* Keep individual tags on one line */
+        }
+
+        /* Article specific styles */
+        .article-column p {
+            line-height: 1.6;
+            margin-bottom: 1em;
+            text-align: justify; /* Justify text for a cleaner look */
+        }
+        .article-column ul {
+            margin-bottom: 1em;
+            padding-left: 20px; /* Indent list items */
+        }
+        .article-column li {
+            margin-bottom: 0.5em;
+        }
+        .article-column strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container" id="loginGateway">
+        <h1>SYA #BlackLives: The GLR Black London Collection</h1>
+        <div class="login-form">
+            <input type="text" id="tokenInput" placeholder="Enter credentials">
+            <button onclick="attemptLoginWithToken()">Login</button>
+            <p id="loginError" class="login-error"></p>
+        </div>
+    </div>
+
+    <div class="main-content-wrapper" id="mainContentWrapper" style="display: none;">
+        <div class="video-column">
+            <div class="featured-video">
+                <div id="featuredIframe"></div>
+            </div>
+
+            <h2>Currently Available Reels</h2>
+            <div class="video-grid" id="videoGrid"></div>
+        </div>
+
+        <div class="article-column">
+            <h2>Reclaiming the Reel: Unlocking the Power of the GLR Black London Archives</h2>
+
+            <p>Jose Velazquez, MA</p>
+
+            <p>The silent threat of decaying physical media looms large over our collective history, particularly for the narratives of marginalized communities. For too long, the invaluable experiences of Black individuals have been underrepresented or entirely absent from historical records (Gyimah, 2024). This is precisely why the "Save Your Archive: Black Lives" project stands as a vital initiative.</p>
+
+            <p>I'm personally proud to have contributed to this critical effort, with a specific focus on Dr. David Dunkley Gyimah 's archive. This wasn't just about preserving old tapes; it was about a fundamental intervention in shaping contemporary narratives of identity, social justice, and cultural understanding. The success of this vital undertaking was significantly facilitated by the Save Your Archive Project of FIAT/IFTA 2021-2022, and made possible through the support of Memnon (Velázquez, 2022).</p>
+
+            <p>My analysis centres on the seminal "GLR Black London" series, a treasure trove of discussions and interviews primarily concerning the Black British experience. The meticulous process of retrieving, digitizing from obsolete formats (Beta SP, D1, D2 tapes, and ¼ inch reels), and enriching with metadata has transformed these vulnerable materials into a fully searchable Media Asset Management system. This means invaluable historical records are now accessible, moving from the brink of oblivion to being shareable digital assets for generations to come.</p>
+
+            <p>The "Save Your Archive: Black Lives" project, and particularly the accessible content from its "GLR Black London" component, represents a monumental achievement. By diligently retrieving, digitising, and contextualising these vulnerable audiovisual materials, we've not only secured a vital part of Black British heritage but have also provided an indispensable resource for understanding the complexities of Black identity in the UK, the ongoing fight for social justice, and the enduring power of cultural expression. This vital work ensures that the echoes of the past, particularly the voices of those previously unheard within Britain, can resonate powerfully into the future, enriching academic discourse, inspiring new artistic creations, and fostering a more inclusive and informed global society.</p>
+
+            <h3>The "GLR Black London" reels offer a vibrant and nuanced historical record, revealing:</h3>
+            <ul>
+                <li><strong>Political and Social Activism:</strong> The archives vividly document the ongoing struggle for civil rights and fair representation in the UK. We see discussions on "race equality, immigration rules, and voting rights for immigrants" amidst "rising racism" and "anticipated violence in 1992" (BL_005). The echoes of global movements, like the Rodney King case and subsequent London protests (BL_020), highlight interconnectedness. Key moments include the appointment of Herman Ouseley as the first Black chairman of the Commission for Racial Equality (BL_009) and discussions around police "cultural awareness training" (BL_014).</li>
+                <li><strong>Addressing Systemic Racism and Discrimination:</strong> The collection unflinchingly exposes systemic issues within British society. The Criminal Justice System is a recurring focus, with content examining the "impact of the Criminal Justice Act on Black individuals" (BL_008) and calls for "anti-racist training" (BL_020). For context, in 2022, Black defendants in England and Wales were more likely to receive a custodial sentence than White British defendants, even when controlling for other factors (Ministry of Justice, 2022). Black prisoners also served a greater proportion of their original sentence in custody (68% in 2022) compared to White prisoners (59%). Concerns about Health Disparities are explicitly mentioned, particularly "health disparities among Black women" (BL_008) and within the "justice system" (BL_004). For instance, Black women in the UK face an almost three-fold higher risk of maternal mortality compared to White women. We also find evidence of Underrepresentation. In the UK Civil Service as of March 2024, only 4.5% of civil servants whose ethnicity was known were Black, compared to 80.7% of the working-age population identifying as White in the 2021 Census. Local "Housing/Community Issues" in Brixton (BL_020) further paint a picture of racial tensions.</li>
+                <li><strong>Powerful Activism & Advocacy:</strong> The archives document various forms of community-led initiatives and advocacy. The "Black Camden Sisters'" efforts to support women facing domestic violence (BL_003) and Dr. Abiola's call for "unity and independent organization within African communities" (BL_008) demonstrate powerful agency. Protests for justice reform (BL_020) are also prominently featured. In London, domestic abuse incidents remain high; for instance, out of nearly 400,000 cases in the past four years, only one in ten led to positive outcomes like a charge or caution.</li>
+                <li><strong>Celebrating Cultural Identity:</strong> These materials richly portray Black arts and culture, including ITV's "new projects supporting Black arts and culture" (BL_009), the role of "Black theater" (BL_005), and various African film series (BL_011, BL_021). We also see the influence of musical giants like Fela Kuti, whose Afrobeat revolutionized music, and the cinematic impact of figures like Melvin Van Peebles, who pioneered Blaxploitation cinema. The contributions of Quincy Jones across music and film are also vital to acknowledge. Discussions on "Historical Contributions" (BL_013) are vital for representation, highlighting "overlooked achievements" of Black figures and the need to "recognize Black inventors like Garrett Morgan and Louis Latimer" (BL_013). "Community Events" like the Leicester Carnival (BL_011, BL_021) and the Brixton Song Contest (BL_015) further celebrating multiculturalism.</li>
+            </ul>
+            <p>Beyond preservation, the collection offers immense potential for future documentary practice, academic research, and public engagement related to the Black British experience. Key themes include:</p>
+            <ul>
+                <li><strong>The Continuum of Black Struggle and Resilience:</strong> These archives provide a powerful narrative of ongoing struggle against oppression, interwoven with stories of resilience, advocacy, and cultural celebration within a British context.</li>
+                <li><strong>Societal Challenges & Human Stories:</strong> The collection highlights significant societal challenges, from recurring themes of Domestic Violence (BL_003, BL_014, BL_040) and touches on Mental Health & Addiction (BL_027, BL_029), to Challenges Faced by Vulnerable Groups (BL_012, BL_015). We also find explorations of Ethical Dilemmas in Science & Society (BL_002, BL_038, BL_039).</li>
+                <li><strong>The Personal & The Universal:</strong> The recurring "John and Mary" Getaway Motif (e.g., BL_002, BL_004, BL_006, BL_008, BL_010, BL_011, BL_013, BL_016, BL_020, BL_021, BL_027, BL_030, BL_033) serves as a relatable backdrop against which profound political and social issues are discussed, illustrating how macro-level events impact individual lives in Britain. The Power of Art and Culture is a dominant theme across music, film, poetry, and theatre.</li>
+                <li><strong>UK Specific Issues & Institutions:</strong> The archives provide granular detail on UK-specific concerns, including British Politics & Governance (BL_004, BL_005, BL_009), Police and Community Relations (BL_006, BL_026), and Infrastructure & Economy issues (BL_007, BL_009, BL_012, BL_004, BL_024, BL_029).</li>
+            </ul>
+            <p>Ultimately, this project represents a significant milestone. By diligently retrieving, digitising, and contextualising these vulnerable audiovisual materials, we've not only secured a vital part of Black British heritage but have also provided an indispensable resource for understanding the complexities of Black identity in the UK, the ongoing fight for social justice, and the enduring power of cultural expression. This work ensures that the echoes of the past, particularly the voices of those previously unheard within Britain, can resonate powerfully into the future, enriching academic discourse, inspiring new artistic creations, and fostering a more inclusive and informed global society. When we need that most.</p>
+
+            <p>José Velázquez is a software architect with over two decades of experience driving digital innovation, consulting for organisations such as the BBC, IBM, and Google. His work sits at the intersection of academia and industry, with a focus on audiovisual preservation, cultural memory, and open, interoperable systems for managing media at scale. Since 2016, José has been an Associate Lecturer on the interdisciplinary Digital Humanities Master's programme at the University of Pablo de Olavide (Seville, Spain.)</p>
+
+            <p>#Archives #BlackLivesMatter #CulturalHeritage #SocialJustice #LondonHistory #DigitalPreservation #MediaArchiving #BlackBritishHistory #DiversityInMedia #CommunityBuilding #DocumentaryFilm #AcademicResearch #GLRBlackLondon #SaveYourArchive #FIAT/IFTA #SYA #dokumenta.video #ArchivesAreAccessible #EDI #morethanever</p>
+        </div>
+    </div>
+
+    <script>
+        // !! WARNING: For demonstration purposes only. Do NOT expose your access token in production client-side code. !!
+        // !!          For production, implement server-side authentication and API calls to protect your token. !!
+        let VIMEO_ACCESS_TOKEN = null;
+        const VIMEO_PROJECT_ID = "25424026"; // <--- REPLACE WITH YOUR ACTUAL VIMEO PROJECT ID
+
+        // --- Login Gateway Functions ---
+        async function attemptLoginWithToken() {
+            const tokenInput = document.getElementById('tokenInput').value.trim();
+            const loginError = document.getElementById('loginError');
+
+            if (!tokenInput) {
+                loginError.textContent = "Please enter an access token.";
+                return;
+            }
+
+            VIMEO_ACCESS_TOKEN = tokenInput;
+
+            try {
+                // 1. Validate token by fetching user info (basic check)
+                const testUrl = `https://api.vimeo.com/me?fields=uri`;
+                const response = await fetch(testUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${VIMEO_ACCESS_TOKEN}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Authentication failed (Status: ${response.status}).`);
+                }
+
+                // 2. Proceed to fetch and display videos
+                document.getElementById('loginGateway').style.display = 'none';
+                document.getElementById('mainContentWrapper').style.display = 'flex'; // Changed to mainContentWrapper
+                fetchAllVimeoVideosAndDisplay();
+
+            } catch (error) {
+                console.error('Login failed:', error);
+                let errorMessage = error.message;
+                loginError.textContent = `Login failed: ${errorMessage}`;
+                VIMEO_ACCESS_TOKEN = null;
+            }
+        }
+
+        // --- Vimeo API Functions to fetch ALL videos ---
+        async function fetchAllVimeoVideosAndDisplay() {
+            if (!VIMEO_ACCESS_TOKEN) {
+                console.error("No Vimeo access token available. Login required.");
+                return;
+            }
+
+            let allVideos = [];
+            // Request 'embed.html' as it still provides the most complete embed info,
+            // even if we're not explicitly using a custom preset ID.
+            let currentPageUrl = `https://api.vimeo.com/me/projects/${VIMEO_PROJECT_ID}/videos?fields=uri,name,tags,description,pictures.sizes,embed.html&per_page=100`;
+
+            try {
+                while (currentPageUrl) {
+                    const response = await fetch(currentPageUrl, {
+                        headers: {
+                            'Authorization': `Bearer ${VIMEO_ACCESS_TOKEN}`
+                        }
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 401 || response.status === 403) {
+                            document.getElementById('mainContentWrapper').innerHTML = `<p style="color: red; text-align: center;">Access Denied. Your token might be invalid or lack permissions for this project. <br> Please check your token permissions or project ID.</p>`;
+                            console.error(`Vimeo API Error: Status ${response.status}. Check token permissions or project ID.`);
+                        }
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    allVideos = allVideos.concat(data.data);
+                    currentPageUrl = data.paging.next;
+
+                    // Optional: Add a small delay between requests to avoid hitting rate limits
+                    // if (currentPageUrl) {
+                    //      await new Promise(resolve => setTimeout(resolve, 200));
+                    // }
+                }
+
+                console.log("Total Vimeo Videos fetched:", allVideos.length);
+                if (allVideos.length > 0) {
+                    console.log("Example of first video's embed.html:", allVideos[0].embed?.html);
+                } else {
+                    console.log("No videos fetched from the project.");
+                }
+
+                displayVideosInPlayerAndGrid(allVideos);
+
+            } catch (error) {
+                console.error('Error fetching Vimeo videos:', error);
+                document.getElementById('mainContentWrapper').innerHTML = `<p style="color: red; text-align: center;">Failed to load videos. Please check your network, token, or project ID.</p>`;
+            }
+        }
+
+        function displayVideosInPlayerAndGrid(videos) {
+            // Sort videos numerically by the number in their name
+            videos.sort((a, b) => {
+                const nameA = a.name || "";
+                const nameB = b.name || "";
+                try {
+                    const numA = parseFloat(nameA.replace("BLACKLIVES_BL_", "").replace("_Vimeo", ""));
+                    const numB = parseFloat(nameB.replace("BLACKLIVES_BL_", "").replace("_Vimeo", ""));
+                    if (!isNaN(numA) && !isNaN(numB)) {
+                        return numA - numB;
+                    }
+                } catch (e) { /* Fallback to string comparison if numerical parsing fails */ }
+                return nameA.localeCompare(b.name || "");
+            });
+
+            const featuredIframeContainer = document.getElementById('featuredIframe');
+            const videoGrid = document.getElementById('videoGrid');
+
+            if (videos.length === 0) {
+                featuredIframeContainer.innerHTML = '<p style="text-align: center; color: #666;">No videos found in this project.</p>';
+                videoGrid.innerHTML = '';
+                return;
+            }
+
+            const firstVideo = videos[0];
+            // Ensure first video is displayed initially
+            updateFeaturedPlayer(firstVideo.uri.split('/').pop(), firstVideo.embed?.html);
+
+            videoGrid.innerHTML = ''; // Clear existing grid content
+
+            videos.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.classList.add('video-item');
+                videoItem.dataset.videoId = video.uri.split('/').pop();
+
+                const videoInfo = document.createElement('div');
+                videoInfo.classList.add('video-item-info');
+
+                const titleElement = document.createElement('h3');
+                titleElement.textContent = video.name.replace(/_Vimeo$/, '');
+                videoInfo.appendChild(titleElement);
+
+                const descriptionElement = document.createElement('p');
+                descriptionElement.classList.add('description');
+                descriptionElement.textContent = video.description || "No description provided.";
+                videoInfo.appendChild(descriptionElement);
+
+                const approxMaxChars = 100; // Character limit for truncation
+                if (descriptionElement.textContent.length > approxMaxChars) {
+                    descriptionElement.classList.add('truncated');
+                    const readMoreBtn = document.createElement('button');
+                    readMoreBtn.classList.add('read-more-btn');
+                    readMoreBtn.textContent = 'Read More';
+                    readMoreBtn.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Prevent the video item click from firing
+                        toggleDescription(descriptionElement, readMoreBtn);
+                    });
+                    videoInfo.appendChild(readMoreBtn);
+                }
+
+                // --- Display Tags ---
+                if (video.tags && video.tags.length > 0) {
+                    const tagsContainer = document.createElement('div');
+                    tagsContainer.classList.add('video-tags');
+                    video.tags.forEach(tag => {
+                        const tagSpan = document.createElement('span');
+                        tagSpan.textContent = tag.name;
+                        tagsContainer.appendChild(tagSpan);
+                    });
+                    videoInfo.appendChild(tagsContainer);
+                }
+
+                videoItem.appendChild(videoInfo);
+
+                // Add click listener to whole item to change featured video
+                videoItem.addEventListener('click', () => {
+                    updateFeaturedPlayer(video.uri.split('/').pop(), video.embed?.html);
+                });
+
+                videoGrid.appendChild(videoItem);
+            });
+        }
+
+        // --- Function to update the featured player ---
+        function updateFeaturedPlayer(videoId, embedHtml) {
+            const featuredIframeContainer = document.getElementById('featuredIframe');
+            featuredIframeContainer.innerHTML = '';
+
+            const videoIframe = document.createElement('iframe');
+            let finalVideoSrc = `https://player.vimeo.com/video/${videoId}`; // Default base URL
+
+            // Prioritize parsing SRC from Vimeo's embed.html if available.
+            // This is how Vimeo handles embed settings and privacy hashes.
+            if (embedHtml) {
+                try {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(embedHtml, 'text/html');
+                    const iframeElement = doc.querySelector('iframe');
+                    if (iframeElement && iframeElement.src) {
+                        finalVideoSrc = iframeElement.src;
+                    }
+                } catch (e) {
+                    console.warn(`WARN: Could not parse embed.html for video ${videoId}. Error: ${e.message}`);
+                }
+            }
+
+            // Ensure autoplay and loop are always set for the featured player.
+            const url = new URL(finalVideoSrc);
+            url.searchParams.set('autoplay', '1');
+            url.searchParams.set('loop', '0');
+            // If you want to explicitly hide byline, portrait, title, add them here:
+            // url.searchParams.set('byline', '0');
+            // url.searchParams.set('portrait', '0');
+            // url.searchParams.set('title', '0');
+
+            finalVideoSrc = url.toString(); // Convert the URL object back to a string
+
+            videoIframe.src = finalVideoSrc;
+            videoIframe.frameBorder = '0';
+            videoIframe.allow = 'autoplay; fullscreen; picture-in-picture';
+            videoIframe.allowFullscreen = true;
+            videoIframe.dataset.videoId = videoId;
+            featuredIframeContainer.appendChild(videoIframe);
+
+            window.scrollTo({
+                top: document.getElementById('featuredIframe').offsetTop - 20,
+                behavior: 'smooth'
+            });
+            console.log(`DEBUG: Player loaded for video ${videoId}. Final SRC: ${finalVideoSrc}.`);
+        }
+
+
+        // --- Helper function to get thumbnail URL (no longer directly used but kept for completeness if needed) ---
+        function getThumbnailUrl(pictures) {
+            const sortedSizes = pictures.filter(p => p.width).sort((a, b) => b.width - a.width);
+            if (sortedSizes.length > 0) {
+                const suitableSize = sortedSizes.find(size => size.width >= 640) || sortedSizes[0];
+                return suitableSize.link;
+            }
+            return 'https://via.placeholder.com/640x360?text=No+Thumbnail'; // Generic fallback image
+        }
+
+        // --- Helper function to toggle description visibility ---
+        function toggleDescription(descriptionElement, buttonElement) {
+            if (descriptionElement.classList.contains('truncated')) {
+                descriptionElement.classList.remove('truncated');
+                buttonElement.textContent = 'Read Less';
+            } else {
+                descriptionElement.classList.add('truncated');
+                buttonElement.textContent = 'Read More';
+            }
+        }
+    </script>
+</body>
+</html>
