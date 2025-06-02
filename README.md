@@ -1,4 +1,4 @@
-# Reclaiming the Reel: Unlocking the Power of the GLR Black London Archives
+Unlocking the Power of the GLR Black London Archives
 
 The silent threat of **decaying physical media** looms large over our collective history, particularly for the narratives of marginalized communities. For too long, the invaluable experiences of Black individuals have been underrepresented or entirely absent from historical records (Gyimah, 2024). This is precisely why the **"Save Your Archive: Black Lives"** project stands as a vital initiative.
 
