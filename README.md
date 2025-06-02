@@ -1,5 +1,8 @@
 **Unlocking the Power of the GLR Black London Collection**
 
+![image](https://github.com/user-attachments/assets/7d4e7bd7-7559-43c7-bd0e-d0133cb8807f)
+
+
 The silent threat of **decaying physical media** looms large over our collective history, particularly for the narratives of marginalized communities. For too long, the invaluable experiences of Black individuals have been underrepresented or entirely absent from historical records (Gyimah, 2024). This is precisely why the **"Save Your Archive: Black Lives"** project stands as a vital initiative.
 
 I'm personally proud to have contributed to this critical effort, with a specific focus on Dr. David Dunkley Gyimah's archive. This wasn't just about preserving old tapes; it was about a **fundamental intervention in shaping contemporary narratives of identity, social justice, and cultural understanding**. The success of this vital undertaking was significantly facilitated by the Save Your Archive Project of FIAT/IFTA 2021-2022, and made possible through the support of Memnon (Velázquez, 2022).
