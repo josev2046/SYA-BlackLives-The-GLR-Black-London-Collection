@@ -1,4 +1,4 @@
-**Unlocking the Power of the GLR Black London Collection**
+## Unlocking the Power of the GLR Black London Collection
 
 
 The silent threat of **decaying physical media** looms large over our collective history, particularly for the narratives of marginalized communities. For too long, the invaluable experiences of Black individuals have been underrepresented or entirely absent from historical records (Gyimah, 2024). This is precisely why the **"Save Your Archive: Black Lives"** project stands as a vital initiative.
@@ -9,9 +9,17 @@ My analysis is centered on the seminal **"GLR Black London" series**, a treasure
 
 The "Save Your Archive: Black Lives" project, and particularly the accessible content from its "GLR Black London" component, represents a monumental achievement. By diligently retrieving, digitizing, and contextualizing these vulnerable audiovisual materials, we've not only secured a vital part of **Black British heritage** but have also provided an indispensable resource for understanding the complexities of Black identity in the UK, the ongoing fight for social justice, and the enduring power of cultural expression. This vital work ensures that the echoes of the past, particularly the voices of those previously unheard within Britain, can resonate powerfully into the future, enriching academic discourse, inspiring new artistic creations, and fostering a more inclusive and informed global society.
 
-https://josev2046.github.io/SYA-BlackLives-The-GLR-Black-London-Collection/glr.html
 
----
+**Methodology in Action: From Obsolete Tapes to Digital Accessibility:**
+
+The "Save Your Archive" paper details a rigorous methodology, including archive retrieval, professional digitisation, Media Asset Management (MAM) system creation, and meticulous metadata enrichment. The very existence and detail of the preserved content's descriptions from the "GLR Black London" collection serve as tangible evidence of this methodology's successful implementation. The ability to access comprehensive information for each piece signifies that the process of transferring content from "obsolete formats (Beta SP, D1, D2 tapes, and ¼ inch reels)" to a "fully searchable Media Asset Management system" has been effectively executed. This transformation is crucial, as it moves these invaluable historical records from the brink of oblivion to a state of accessible, searchable, and shareable digital assets, ensuring they are preserved for future generations.
+
+We have also incorporated a Retrieval Augmented Generation (RAG) architecture to enhance search and discovery. RAG offers an intelligent approach to improving AI language models (LLMs). Rather than solely depending on their training data, RAG enables them to consult additional, current information from a distinct knowledge base. This assists the AI in providing more accurate and pertinent responses, particularly for specialised subjects or private data, and diminishes the likelihood of fabrication.
+
+For systems of this nature, RAG functions by segmenting information (such as video transcripts or visual descriptions) into smaller units and storing them. When a query is posed, the system identifies the most relevant information segments and then furnishes these to the AI, alongside the query. The AI subsequently utilises this specific context to formulate a precise answer, proving more efficient and dependable than attempting to process vast quantities of data simultaneously. A high-level overview of this prototype is as follows:
+
+![image](https://github.com/user-attachments/assets/98aecd45-0f3f-4ad2-8920-73656663c8bc)
+
 
 **What the "GLR Black London" Reels Reveal:**
 
@@ -33,7 +41,6 @@ The archives document various forms of community-led initiatives and advocacy. T
 
 These materials richly portray Black arts and culture, including ITV's "new projects supporting Black arts and culture" `(BL_009)`, the role of "Black theater" `(BL_005)`, and various African film series `(BL_011, BL_021)`. We also see the influence of musical giants like Fela Kuti, whose Afrobeat revolutionized music, and the cinematic impact of figures like Melvin Van Peebles, who pioneered Blaxploitation cinema. The contributions of Quincy Jones across music and film are also vital to acknowledge. Discussions on "Historical Contributions" `(BL_013)` are vital for representation, highlighting "overlooked achievements" of Black figures and the need to "recognize Black inventors like Garrett Morgan and Louis Latimer" `(BL_013)`. "Community Events" like the Leicester Carnival `(BL_011, BL_021)` and the Brixton Song Contest `(BL_015)` further celebrating multiculturalism.
 
----
 
 **Potential for Future Research & Engagement**
 
@@ -44,7 +51,6 @@ Beyond preservation, the collection offers immense potential for future document
 * **The Personal & The Universal:** The recurring "John and Mary" Getaway Motif (e.g., `BL_002`, `BL_004`, `BL_006`, `BL_008`, `BL_010`, `BL_011`, `BL_013`, `BL_016`, `BL_020`, `BL_021`, `BL_027`, `BL_030`, `BL_033`) serves as a relatable backdrop against which profound political and social issues are discussed, illustrating how macro-level events impact individual lives in Britain. The Power of Art and Culture is a dominant theme across music, film, poetry, and theatre.
 * **UK Specific Issues & Institutions:** The archives provide granular detail on UK-specific concerns, including British Politics & Governance `(BL_004, BL_005, BL_009)`, Police and Community Relations `(BL_006, BL_026)`, and Infrastructure & Economy issues `(BL_007, BL_009, BL_012, BL_004, BL_024, BL_029)`.
 
----
 
 **Conclusion**
 
