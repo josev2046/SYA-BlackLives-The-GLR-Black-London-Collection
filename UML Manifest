@@ -1,0 +1,91 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+!theme plain
+autonumber
+
+actor "User" as User
+boundary "Browser (Frontend App)" as FrontendApp
+
+box "MAM Services" #LightBlue
+    collections "MAM API" as VimeoAPI
+    entity "MAM Player (iframe)" as VimeoPlayer
+end box
+
+box "Video-RAG System Backend" #LightGreen
+    participant "VRS Backend Service" as VRSBackend
+    database "Knowledge Base (Vector DB)" as KB
+    participant "AI Language Model (LLM)" as LLM
+end box
+
+group Data Preparation (One-time, Offline)
+    VRSBackend -> KB: Process Video Content (e.g., transcribe, describe visuals)
+    KB -> KB: Store as searchable chunks/vectors
+end
+
+== Application Initialization & Video Display ==
+
+FrontendApp -> User: Displays Login Gateway
+activate FrontendApp
+
+User -> FrontendApp: Enters Token & Clicks "Login"
+
+FrontendApp -> VimeoAPI: REST API: GET /me (Validate Token)
+activate VimeoAPI
+VimeoAPI --> FrontendApp: Token Validation Result (User Info / Error)
+deactivate VimeoAPI
+
+alt Token Validation Successful
+    FrontendApp -> FrontendApp: Hides Login, Shows Main Layout
+    FrontendApp -> VimeoAPI: REST API: GET /me/projects/{ID}/videos (Fetch All)
+    activate VimeoAPI
+    VimeoAPI --> FrontendApp: Video Metadata & Embed HTML (Paged)
+    deactivate VimeoAPI
+
+    FrontendApp -> FrontendApp: Sorts Videos & Prepares UI
+    FrontendApp -> FrontendApp: Embeds iframe for 1st Video
+    FrontendApp -> VimeoPlayer: Load Player with 1st Video (via iframe src)
+    activate VimeoPlayer
+    VimeoPlayer --> FrontendApp: Video Stream Ready
+    deactivate VimeoPlayer
+
+    FrontendApp -> FrontendApp: Renders List of All Reels (Titles, Desc, Tags)
+    FrontendApp --> User: Displays Videos & Article
+
+    User -> FrontendApp: Clicks a specific Reel in the list
+    activate FrontendApp
+    FrontendApp -> FrontendApp: Updates iframe src
+    FrontendApp -> VimeoPlayer: Load Player with Selected Video (via iframe src)
+    activate VimeoPlayer
+    VimeoPlayer --> FrontendApp: New Video Stream Ready
+    deactivate VimeoPlayer
+    deactivate FrontendApp
+
+    == AI Question & Answering (In-Player) ==
+
+    User -> FrontendApp: Asks a Question *about currently playing content*\n(e.g., via chat input **in player UI**)
+    activate FrontendApp
+    FrontendApp -> VRSBackend: Send Question (+ context like video ID)
+    activate VRSBackend
+
+    VRSBackend -> KB: Find relevant chunks for the question
+    KB --> VRSBackend: Provide relevant chunks (e.g., transcript segments)
+
+    VRSBackend -> LLM: Send question + retrieved chunks (prompt engineering)
+    activate LLM
+    LLM --> VRSBackend: Generate Answer
+    deactivate LLM
+
+    VRSBackend --> FrontendApp: Send Answer
+    deactivate VRSBackend
+
+    FrontendApp --> User: Display Answer *in player UI*
+    deactivate FrontendApp
+
+else Token Validation Failed
+    FrontendApp --> User: Displays Login Error Message
+    deactivate FrontendApp
+end
+
+@enduml
