@@ -57,8 +57,13 @@ Beyond preservation, the collection offers immense potential for future document
 The "Save Your Archive: Black Lives" project, and particularly the accessible content from its "GLR Black London" collection, represents a significant achievement. By diligently retrieving, digitising, and contextualising these vulnerable audio-visual materials, we've not only secured a vital part of Black British heritage but have also provided an indispensable resource for understanding the complexities of Black identity in the UK, the ongoing fight for social justice, and the enduring power of cultural expression. This vital work ensures that the echoes of the past, particularly the voices of those previously unheard within Britain, can resonate powerfully into the future, enriching academic discourse, inspiring new artistic creations, and fostering a more inclusive and informed global society.
 
 ---
+**References:**
 
-**About the Author**
+Gyimah, D. D. (2023). Black London (BBC GLR 1991-1993) the Importance of a BBC Radio Archive for Black British People and Scholars. Journal of Radio & Audio Media, 30(2). https://doi.org/10.1080/19376529.2023.2261924
+
+Velázquez, J. (2022). Save Your Archive: Black Lives - Historical Friendships and the King's Men. Zenodo. https://doi.org/10.5281/zenodo.15045939
+
+**About the Author:**
 
 **José Velázquez, MA** is a software architect with over two decades of experience driving digital innovation, consulting for organizations such as the BBC, IBM, and Google. His work sits at the intersection of academia and industry, with a focus on audiovisual preservation, cultural memory, and open, interoperable systems for managing media at scale. Since 2016, José has been an Associate Lecturer on the interdisciplinary Digital Humanities Master's program at the University of Pablo de Olavide (Seville, Spain.)
 
