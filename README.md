@@ -64,7 +64,7 @@ Beyond preservation, the collection offers immense potential for future document
 
 **Conclusion**
 
-Ultimately, this project represents a significant milestone. By diligently retrieving, digitizing, and contextualizing these vulnerable audiovisual materials, we've not only secured a vital part of **Black British heritage** but have also provided an indispensable resource for understanding the complexities of **Black identity in the UK**, the ongoing fight for **social justice**, and the enduring power of **cultural expression**. This work ensures that the echoes of the past, particularly the voices of those previously unheard within Britain, can resonate powerfully into the future, enriching academic discourse, inspiring new artistic creations, and fostering a more inclusive and informed global society. When we need that most.
+Ultimately, the "Save Your Archive: Black Lives" project, and particularly the accessible content from its "GLR Black London" collection, represents a monumental achievement. By diligently retrieving, digitising, and contextualising these vulnerable audio-visual materials, we've not only secured a vital part of Black British heritage but have also provided an indispensable resource for understanding the complexities of Black identity in the UK, the ongoing fight for social justice, and the enduring power of cultural expression. This vital work ensures that the echoes of the past, particularly the voices of those previously unheard within Britain, can resonate powerfully into the future, enriching academic discourse, inspiring new artistic creations, and fostering a more inclusive and informed global society.
 
 ---
 
