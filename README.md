@@ -16,17 +16,17 @@ My analysis is centred on the seminal "GLR Black London" series, a treasure trov
 
 We have now incorporated a Retrieval Augmented Generation (RAG) architecture to enhance search and discovery. RAG offers an intelligent approach to improving AI language models (LLMs). Rather than solely depending on their training data, RAG enables them to consult additional, current information from a distinct knowledge base. This assists the AI in providing more accurate and pertinent responses, particularly for specialised subjects or private data, and diminishes the likelihood of fabrication.
 
-For systems of this nature, RAG functions by segmenting information (such as video transcripts or visual descriptions) into smaller units and storing them. When a query is posed, the system identifies the most relevant information segments and then furnishes these to the AI, alongside the query. The AI subsequently utilises this specific context to formulate a precise answer, proving more efficient and dependable than attempting to process vast quantities of data simultaneously. 
+For systems of this nature, Retrieval Augmented Generation (RAG) functions by segmenting information (such as video transcripts or visual descriptions) into smaller units and storing them. When a query is posed, the system identifies the most relevant information segments and then furnishes these to the AI, alongside the query. The AI subsequently utilises this specific context to formulate a precise answer, proving more efficient and dependable than attempting to process vast quantities of data simultaneously.
 
-Thus:
+This RAG integration significantly enhances the system's search and discovery capabilities. A high-level overview of the current prototype's architecture is presented below:
 
 ![image](https://github.com/user-attachments/assets/dae04da8-625a-49b7-a9f3-8a52416d6af1)
 
-
-A high-level overview of the full, current prototype (captured as UML sequence diagrams) is as follows:
+A more detailed illustration of the full prototype is also provided:
 
 ![image](https://github.com/user-attachments/assets/c8d89373-252d-4e4c-8c1f-fde0a876b69d)
 
+While the current prototype still relies on some proprietary components, our intention is to repurpose it fully on open-source libraries, such as ByteDance-Seed/BAGEL-7B-MoT.
 
 **What the "GLR Black London" Reels Reveal:**
 
@@ -42,7 +42,7 @@ The "GLR Black London" reels offer a vibrant and nuanced historical record, reve
     The archives document various forms of community-led initiatives and advocacy. The "Black Camden Sisters'" efforts to support women facing **domestic violence** (`BL_003`) and Dr. Abiola's call for "unity and independent organization within African communities" (`BL_008`) demonstrate powerful agency. Protests for justice reform (`BL_020`) are also prominently featured. In London, domestic abuse incidents remain high; for instance, **out of nearly 400,000 cases in the past four years, only one in ten led to positive outcomes like a charge or caution**.
 
 * **Celebrating Cultural Identity**
-    These materials richly portray Black arts and culture, including ITV's "new projects supporting Black arts and culture" (`BL_009`), the role of "Black theatre" (`BL_005`), and various African film series (`BL\_011, BL\_021`). We also see the influence of musical giants like **Fela Kuti**, whose Afrobeat revolutionised music, and the cinematic impact of figures like **Melvin Van Peebles**, who pioneered Blaxploitation cinema. The contributions of **Quincy Jones** across music and film are also vital to acknowledge. Discussions on "Historical Contributions" (`BL_013`) are vital for representation, highlighting "overlooked achievements" of Black figures and the need to "recognise Black inventors like **Garrett Morgan** and **Louis Latimer**" (`BL_013`). "Community Events" like the Leicester Carnival (`BL_011, BL_021`) and the Brixton Song Contest (`BL_015`) further celebrating multiculturalism.
+    These materials richly portray Black arts and culture, including ITV's "new projects supporting Black arts and culture" (`BL_009`), the role of "Black theatre" (`BL_005`), and various African film series (`BL_011, BL_021`). We also see the influence of musical giants like **Fela Kuti**, whose Afrobeat revolutionised music, and the cinematic impact of figures like **Melvin Van Peebles**, who pioneered Blaxploitation cinema. The contributions of **Quincy Jones** across music and film are also vital to acknowledge. Discussions on "Historical Contributions" (`BL_013`) are vital for representation, highlighting "overlooked achievements" of Black figures and the need to "recognise Black inventors like **Garrett Morgan** and **Louis Latimer**" (`BL_013`). "Community Events" like the Leicester Carnival (`BL_011, BL_021`) and the Brixton Song Contest (`BL_015`) further celebrating multiculturalism.
 
 Beyond preservation, the collection offers immense potential for future documentary practice, academic research, and public engagement related to the Black British experience. Key themes include:
 
