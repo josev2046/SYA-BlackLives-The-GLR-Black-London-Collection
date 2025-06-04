@@ -11,10 +11,10 @@
 
             /* --- BACKGROUND IMAGE STYLES --- */
             background-image: url('reels.png'); /* Make sure reels.png is in the same directory as this HTML file */
-            background-size: cover;            /* Scales the image to cover the entire body */
-            background-repeat: no-repeat;      /* Prevents the image from repeating */
+            background-size: cover;          /* Scales the image to cover the entire body */
+            background-repeat: no-repeat;    /* Prevents the image from repeating */
             background-position: center center; /* Centers the image */
-            background-attachment: fixed;      /* Keeps the background image fixed while scrolling */
+            background-attachment: fixed;    /* Keeps the background image fixed while scrolling */
 
             /* Ensure body covers full viewport for absolute positioning of login-container */
             min-height: 100vh;
@@ -249,15 +249,16 @@
             color: #333;
         }
 
-        /* Style for reel references */
+        /* Style for reel references - updated for wrapping and spacing */
         .reel-reference {
             font-weight: bold;
-            color: #8B0000; /* Dark red for strong emphasis, distinct from links */
             background-color: rgba(255, 0, 0, 0.05); /* Very light red background */
             padding: 2px 5px;
             border-radius: 4px;
-            white-space: nowrap; /* Keep the reference on one line */
+            /* Removed: white-space: nowrap; to allow wrapping */
             font-size: 0.95em; /* Slightly larger to enhance visibility */
+            display: inline-block; /* Allows padding/margin and still wraps inline */
+            margin: 0 4px 4px 0; /* Added margin for spacing between wrapped elements */
         }
     </style>
 </head>
@@ -296,7 +297,7 @@
             <ul>
                 <li><strong>The Continuum of Black Struggle and Resilience:</strong> These archives provide a powerful narrative of ongoing struggle against oppression, interwoven with stories of resilience, advocacy, and cultural celebration within a British context.</li>
                 <li><strong>Societal Challenges & Human Stories:</strong> The collection highlights significant societal challenges, from recurring themes of Domestic Violence <span class="reel-reference">(BL_003)</span>, <span class="reel-reference">(BL_014)</span>, <span class="reel-reference">(BL_040)</span> and touches on Mental Health & Addiction <span class="reel-reference">(BL_027)</span>, <span class="reel-reference">(BL_029)</span>, to Challenges Faced by Vulnerable Groups <span class="reel-reference">(BL_012)</span>, <span class="reel-reference">(BL_015)</span>. We also find explorations of Ethical Dilemmas in Science & Society <span class="reel-reference">(BL_002)</span>, <span class="reel-reference">(BL_038)</span>, <span class="reel-reference">(BL_039)</span>.</li>
-                <li><strong>The Personal & The Universal:</strong> The recurring "John and Mary" Getaway Motif <span class="reel-reference">(e.g., BL_002, BL_004, BL_006, BL_008, BL_010, BL_011, BL_013, BL_016, BL_020, BL_021, BL_027, BL_030, BL_033)</span> serves as a relatable backdrop against which profound political and social issues are discussed, illustrating how macro-level events impact individual lives in Britain. The Power of Art and Culture is a dominant theme across music, film, poetry, and theatre.</li>
+                <li><strong>The Personal & The Universal:</strong> The recurring "John and Mary" Getaway Motif (e.g., <span class="reel-reference">(BL_002)</span>, <span class="reel-reference">(BL_004)</span>, <span class="reel-reference">(BL_006)</span>, <span class="reel-reference">(BL_008)</span>, <span class="reel-reference">(BL_010)</span>, <span class="reel-reference">(BL_011)</span>, <span class="reel-reference">(BL_013)</span>, <span class="reel-reference">(BL_016)</span>, <span class="reel-reference">(BL_020)</span>, <span class="reel-reference">(BL_021)</span>, <span class="reel-reference">(BL_027)</span>, <span class="reel-reference">(BL_030)</span>, <span class="reel-reference">(BL_033)</span>) serves as a relatable backdrop against which profound political and social issues are discussed, illustrating how macro-level events impact individual lives in Britain. The Power of Art and Culture is a dominant theme across music, film, poetry, and theatre.</li>
                 <li><strong>UK Specific Issues & Institutions:</strong> The archives provide granular detail on UK-specific concerns, including British Politics & Governance <span class="reel-reference">(BL_004)</span>, <span class="reel-reference">(BL_005)</span>, <span class="reel-reference">(BL_009)</span>, Police and Community Relations <span class="reel-reference">(BL_006)</span>, <span class="reel-reference">(BL_026)</span>, and Infrastructure & Economy issues <span class="reel-reference">(BL_007)</span>, <span class="reel-reference">(BL_009)</span>, <span class="reel-reference">(BL_012)</span>, <span class="reel-reference">(BL_004)</span>, <span class="reel-reference">(BL_024)</span>, <span class="reel-reference">(BL_029)</span>.</li>
             </ul>
         </div>
@@ -307,6 +308,8 @@
         // !!          For production, implement server-side authentication and API calls to protect your token. !!
         let VIMEO_ACCESS_TOKEN = null;
         const VIMEO_PROJECT_ID = "25424026"; // <--- REPLACE WITH YOUR ACTUAL VIMEO PROJECT ID
+
+        let videoReferenceMap = new Map(); // Global map to store video data by BL_XXX ID
 
         // --- Login Gateway Functions ---
         async function attemptLoginWithToken() {
@@ -392,6 +395,7 @@
                 }
 
                 displayVideosInPlayerAndGrid(allVideos);
+                linkReelReferences(); // Call the new function to link article references
 
             } catch (error) {
                 console.error('Error fetching Vimeo videos:', error);
@@ -422,6 +426,18 @@
                 videoGrid.innerHTML = '';
                 return;
             }
+
+            // Populate videoReferenceMap
+            videoReferenceMap.clear(); // Clear previous entries
+            videos.forEach(video => {
+                const videoName = video.name || "";
+                const match = videoName.match(/BL_\d+/);
+                if (match) {
+                    const blId = match[0]; // e.g., "BL_005"
+                    videoReferenceMap.set(blId, video);
+                }
+            });
+
 
             const firstVideo = videos[0];
             // Ensure first video is displayed initially
@@ -550,6 +566,37 @@
                 descriptionElement.classList.add('truncated');
                 buttonElement.textContent = 'Read More';
             }
+        }
+
+        // --- Function to link reel references in the article column ---
+        function linkReelReferences() {
+            const reelReferences = document.querySelectorAll('.article-column .reel-reference');
+            reelReferences.forEach(span => {
+                const textContent = span.textContent.trim(); // e.g., "(BL_005)"
+                const match = textContent.match(/BL_\d+/);
+                if (match) {
+                    const blId = match[0]; // e.g., "BL_005"
+                    const video = videoReferenceMap.get(blId);
+                    if (video) {
+                        span.style.cursor = 'pointer';
+                        span.style.textDecoration = 'underline';
+                        span.style.color = '#007bff'; // Blue like a link
+                        span.addEventListener('click', (event) => {
+                            event.stopPropagation(); // Prevent the video item click from firing
+                            updateFeaturedPlayer(video.uri.split('/').pop(), video.embed?.html);
+                        });
+                        // Add hover effect for consistency with other links
+                        span.addEventListener('mouseover', () => {
+                            span.style.color = '#0056b3'; // Darker blue on hover
+                        });
+                        span.addEventListener('mouseout', () => {
+                            span.style.color = '#007bff'; // Back to original blue
+                        });
+                    } else {
+                        console.warn(`Video for reference ${blId} not found in collection.`);
+                    }
+                }
+            });
         }
     </script>
 </body>
