@@ -16,7 +16,7 @@ My analysis is centred on the seminal "GLR Black London" series, a treasure trov
 
 We have now incorporated a Retrieval Augmented Generation (RAG) architecture to enhance search and discovery. RAG offers an intelligent approach to improving AI language models (LLMs). Rather than solely depending on their training data, RAG enables them to consult additional, current information from a distinct knowledge base. This assists the AI in providing more accurate and pertinent responses, particularly for specialised subjects or private data, and diminishes the likelihood of fabrication.
 
-For systems of this nature, Retrieval Augmented Generation (RAG) functions by segmenting information (such as video transcripts or visual descriptions) into smaller units and storing them. When a query is posed, the system identifies the most relevant information segments and then furnishes these to the AI, alongside the query. The AI subsequently utilises this specific context to formulate a precise answer, proving more efficient and dependable than attempting to process vast quantities of data simultaneously.
+For systems of this nature, RAG functions by segmenting information (such as video transcripts or visual descriptions) into smaller units and storing them. When a query is posed, the system identifies the most relevant information segments and then furnishes these to the AI, alongside the query. The AI subsequently utilises this specific context to formulate a precise answer, proving more efficient and dependable than attempting to process vast quantities of data simultaneously.
 
 This RAG integration significantly enhances the system's search and discovery capabilities. A high-level overview of the current prototype's architecture is presented below:
 
