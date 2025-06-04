@@ -23,10 +23,9 @@ Thus:
 ![image](https://github.com/user-attachments/assets/dae04da8-625a-49b7-a9f3-8a52416d6af1)
 
 
-A high-level overview of the full, current prototype is as follows:
+A high-level overview of the full, current prototype (captured as UML sequence diagrams) is as follows:
 
-![image](https://github.com/user-attachments/assets/3874bae2-a41f-4461-9485-90733dcce72e)
-
+![image](https://github.com/user-attachments/assets/c8d89373-252d-4e4c-8c1f-fde0a876b69d)
 
 
 **What the "GLR Black London" Reels Reveal:**
