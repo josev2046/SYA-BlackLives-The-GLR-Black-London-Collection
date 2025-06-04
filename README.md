@@ -8,7 +8,7 @@ ___
 
 The silent threat of decaying physical media looms large over our collective history, particularly for the narratives of marginalised communities. For too long, the invaluable experiences of Black individuals have been under-represented or entirely absent from historical records (Gyimah, 2024). This is precisely why the "Save Your Archive: Black Lives" project stands as a vital initiative.
 
-I'm personally proud to have contributed to this critical effort, with a specific focus on Dr David Dunkley Gyimah's personal archive. This wasn't just about preserving old tapes; it was about a fundamental intervention in shaping contemporary narratives of identity, social justice, and cultural understanding. The success of this vital undertaking was significantly facilitated by the Save Your Archive Project of FIAT/IFTA 2021-2022, and made possible through the support of Memnon (Velázquez, 2022).
+I was privileged to contribute and lead this project, both as producer and architect, with a specific focus on Dr. David Dunkley Gyimah's personal archive. This initiative was more than just preserving old tapes; it represented a fundamental intervention in shaping contemporary narratives of identity, social justice, and cultural understanding. The success of this vital undertaking was greatly helped by the Save Your Archive Project of FIAT/IFTA (2021-2022) and made possible through the support of Memnon (Velázquez, 2022).
 
 **Methodology:**
 
