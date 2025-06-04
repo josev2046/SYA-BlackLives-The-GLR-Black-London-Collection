@@ -6,27 +6,22 @@
 
 ___
 
-The silent threat of **decaying physical media** looms large over our collective history, particularly for the narratives of marginalized communities. For too long, the invaluable experiences of Black individuals have been underrepresented or entirely absent from historical records (Gyimah, 2024). This is precisely why the **"Save Your Archive: Black Lives"** project stands as a vital initiative.
+The silent threat of decaying physical media looms large over our collective history, particularly for the narratives of marginalised communities. For too long, the invaluable experiences of Black individuals have been under-represented or entirely absent from historical records (Gyimah, 2024). This is precisely why the "Save Your Archive: Black Lives" project stands as a vital initiative.
 
-I'm personally proud to have contributed to this critical effort, with a specific focus on Dr. David Dunkley Gyimah's archive. This wasn't just about preserving old tapes; it was about a **fundamental intervention in shaping contemporary narratives of identity, social justice, and cultural understanding**. The success of this vital undertaking was significantly facilitated by the 2021-2022 Save Your Archive Program of FIAT/IFTA, and made possible through the support of Memnon (Velázquez, 2022).
+I'm personally proud to have contributed to this critical effort, with a specific focus on Dr David Dunkley Gyimah's personal archive. This wasn't just about preserving old tapes; it was about a fundamental intervention in shaping contemporary narratives of identity, social justice, and cultural understanding. The success of this vital undertaking was significantly facilitated by the Save Your Archive Project of FIAT/IFTA 2021-2022, and made possible through the support of Memnon (Velázquez, 2022).
 
-My analysis is centered on the seminal **"GLR Black London" series**, a treasure trove of discussions and interviews primarily concerning the **Black British experience**. The meticulous process of retrieving, digitizing from obsolete formats (Beta SP, D1, D2 tapes, and ¼ inch reels), and enriching with metadata has transformed these vulnerable materials into a fully searchable Media Asset Management system. This means invaluable historical records are now accessible, moving from the brink of oblivion to being shareable **digital assets for generations to come**.
+Methodology
 
-The "Save Your Archive: Black Lives" project, and particularly the accessible content from its "GLR Black London" collection, represents a monumental achievement. By diligently retrieving, digitizing, and contextualizing these vulnerable audiovisual materials, we've not only secured a vital part of **Black British heritage** but have also provided an indispensable resource for understanding the complexities of Black identity in the UK, the ongoing fight for social justice, and the enduring power of cultural expression. This vital work ensures that the echoes of the past, particularly the voices of those previously unheard within Britain, can resonate powerfully into the future, enriching academic discourse, inspiring new artistic creations, and fostering a more inclusive and informed global society.
-
-
-**Methodology in Action: From Obsolete Tapes to Digital Accessibility:**
-
-The "Save Your Archive" paper details a rigorous methodology, including archive retrieval, professional digitisation, Media Asset Management (MAM) system creation, and meticulous metadata enrichment. The very existence and detail of the preserved content's descriptions from the "GLR Black London" collection serve as tangible evidence of this methodology's successful implementation. The ability to access comprehensive information for each piece signifies that the process of transferring content from "obsolete formats (Beta SP, D1, D2 tapes, and ¼ inch reels)" to a "fully searchable Media Asset Management system" has been effectively executed. This transformation is crucial, as it moves these invaluable historical records from the brink of oblivion to a state of accessible, searchable, and shareable digital assets, ensuring they are preserved for future generations.
+My analysis is centred on the seminal "GLR Black London" series, a treasure trove of discussions and interviews primarily concerning the Black British experience. The rigorous methodology, including the meticulous process of retrieving and professionally digitising content from obsolete formats (Beta SP, D1, D2 tapes, and ¼ inch reels), along with meticulous metadata enrichment and Media Asset Management (MAM) system creation, has transformed these vulnerable materials into a fully searchable system. This means invaluable historical records are now accessible, moving from the brink of oblivion to being shareable digital assets for generations to come. The very existence and detail of the preserved content's descriptions from the "GLR Black London" collection serve as tangible evidence of this methodology's successful implementation, signifying that the process has been effectively executed.
 
 We have now incorporated a Retrieval Augmented Generation (RAG) architecture to enhance search and discovery. RAG offers an intelligent approach to improving AI language models (LLMs). Rather than solely depending on their training data, RAG enables them to consult additional, current information from a distinct knowledge base. This assists the AI in providing more accurate and pertinent responses, particularly for specialised subjects or private data, and diminishes the likelihood of fabrication.
 
 For systems of this nature, RAG functions by segmenting information (such as video transcripts or visual descriptions) into smaller units and storing them. When a query is posed, the system identifies the most relevant information segments and then furnishes these to the AI, alongside the query. The AI subsequently utilises this specific context to formulate a precise answer, proving more efficient and dependable than attempting to process vast quantities of data simultaneously. Thus:
 
-![image](https://github.com/user-attachments/assets/862b6e4b-a7b0-42f1-9e32-f6e59cc79d64)
+![image](https://github.com/user-attachments/assets/dae04da8-625a-49b7-a9f3-8a52416d6af1)
 
 
-A high-level overview of the current prototype is as follows:
+A high-level overview of the full, current prototype is as follows:
 
 ![image](https://github.com/user-attachments/assets/98aecd45-0f3f-4ad2-8920-73656663c8bc)
 
