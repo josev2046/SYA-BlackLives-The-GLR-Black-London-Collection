@@ -1,5 +1,7 @@
 ## Unlocking the Power of the GLR Black London Collection
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15593675.svg)](https://doi.org/10.5281/zenodo.15593675)
+
 **Abstract:** This paper outlines the evolution of the "FIAT/IFTA Save Your Archive: Black Lives" project, a critical initiative to preserve audiovisual materials documenting the Black British experience. Focusing on the "GLR Black London" collection, we detail the methodology, including retrieval and digitization of obsolete formats into a searchable Media Asset Management (MAM) system, enhanced by Retrieval Augmented Generation (RAG). Our analysis reveals a vibrant historical record encompassing activism, the struggle against systemic racism and discrimination, and cultural identity. 
 
 **Keywords:** Black British experience, Archival preservation, Digitization, Media Asset Management, Retrieval Augmented Generation (RAG), Social justice, Cultural heritage, Audiovisual archives, FIAT/IFTA
