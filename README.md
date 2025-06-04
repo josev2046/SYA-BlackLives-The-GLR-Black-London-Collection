@@ -1,10 +1,10 @@
 ## Unlocking the Power of the GLR Black London Collection
 
-**Abstract:**
+**Abstract:** This paper outlines the "Save Your Archive: Black Lives" project, a critical initiative to preserve audiovisual materials documenting the Black British experience. Focusing on the "GLR Black London" collection, we detail the methodology, including retrieval and digitization of obsolete formats into a searchable Media Asset Management (MAM) system, enhanced by Retrieval Augmented Generation (RAG). Our analysis reveals a vibrant historical record encompassing activism, the struggle against systemic racism and discrimination, and cultural identity. This project secures a vital part of Black British heritage and provides an indispensable resource for fostering a more inclusive global society.
 
-This paper details the "Save Your Archive: Black Lives" project, a critical initiative to preserve and contextualize invaluable audiovisual materials documenting the Black British experience. Focusing on the seminal "GLR Black London" series, we outline the rigorous methodology, including the retrieval and digitization of obsolete formats (Beta SP, D1, D2 tapes, ¼ inch reels) into a fully searchable Media Asset Management (MAM) system. This transformation is significantly enhanced by a Retrieval Augmented Generation (RAG) architecture, ensuring accurate and pertinent discovery. Our analysis of the "GLR Black London" reels reveals a vibrant historical record encompassing political and social activism, the ongoing struggle against systemic racism and discrimination (e.g., disproportionate custodial sentences for Black defendants, 68% vs. 59% for White prisoners in 2022; Black women facing nearly three-fold higher maternal mortality risk), powerful activism and advocacy (e.g., only one in ten domestic abuse cases leading to positive outcomes in London), and the rich tapestry of cultural identity. This project not only secures a vital part of Black British heritage but also provides an indispensable resource for fostering a more inclusive and informed global society.
+**Keywords:** Black British experience, Archival preservation, Digitization, Media Asset Management, Retrieval Augmented Generation (RAG), Social justice, Cultural heritage, Audiovisual archives
 
-__
+___
 
 The silent threat of **decaying physical media** looms large over our collective history, particularly for the narratives of marginalized communities. For too long, the invaluable experiences of Black individuals have been underrepresented or entirely absent from historical records (Gyimah, 2024). This is precisely why the **"Save Your Archive: Black Lives"** project stands as a vital initiative.
 
