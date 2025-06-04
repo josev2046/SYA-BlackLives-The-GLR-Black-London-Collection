@@ -1,0 +1,158 @@
+RAG Implementation:
+
+@startuml
+' --- Skin Parameters ---
+' Remove skinparam monochrome true to enable colors
+skinparam packageStyle rectangle
+skinparam shadowing false
+!theme plain
+autonumber
+
+' --- Actors and Boundaries ---
+actor "User" as User
+boundary "Browser (Frontend App)" as FrontendApp
+
+' --- Backend System Box (will now show LightBlue) ---
+box "Media-RAG System Backend" #LightBlue
+    participant "VRS Backend Service" as VRSBackend
+    database "Knowledge Base (Vector DB)" as KB
+    participant "AI Language Model (LLM)" as LLM
+end box
+
+' --- Data Preparation Phase (One-time, Offline Processing) ---
+group Data Preparation (One-time, Offline)
+    ' The VRS Backend processes media content (e.g., transcribes audio, describes visuals).
+    VRSBackend -> KB: Process Media Content (e.g., transcribe, describe visuals)
+    note right #LightYellow: This step extracts key information from the media, such as\naudio transcripts, visual descriptions, and scene analysis.
+    ' The processed content is stored in the Knowledge Base as searchable chunks/vectors.
+    KB -> KB: Store as searchable chunks/vectors
+    note right #LightYellow: The extracted information is broken into "chunks"\nand converted into vectors for efficient retrieval.
+end
+
+' --- AI Question & Answering Phase (Real-time, In-Player Interaction) ---
+group AI Question & Answering (In-Player)
+    ' User asks a question about the media content via the frontend.
+    User -> FrontendApp: Asks a Question *about currently playing content*\n(e.g., via chat input **in player UI**)
+    activate FrontendApp
+    ' The frontend sends the question to the VRS Backend, along with context like the media ID.
+    FrontendApp -> VRSBackend: Send Question (+ context like media ID)
+    note right #LightYellow: The media ID narrows the search to specific content.
+    activate VRSBackend
+
+    ' The VRS Backend queries the Knowledge Base to find relevant content chunks based on the question.
+    VRSBackend -> KB: Find relevant chunks for the question
+    note right #LightYellow: This is the "Retrieval" part of RAG,\nsearching for chunks similar to the question.
+    ' The Knowledge Base returns the relevant chunks (e.g., transcript segments) to the backend.
+    KB --> VRSBackend: Provide relevant chunks (e.g., transcript segments)
+
+    ' The VRS Backend sends the user's question and the retrieved chunks to the LLM for answer generation.
+    VRSBackend -> LLM: Send question + retrieved chunks (prompt engineering)
+    note right #LightYellow: This is the "Augmentation" part of RAG.\nThe LLM uses the question and media context to generate\na more accurate answer. Prompt engineering guides the LLM.
+    activate LLM
+    ' The LLM processes the input and generates a natural language answer.
+    LLM --> VRSBackend: Generate Answer
+    deactivate LLM
+
+    ' The VRS Backend sends the generated answer back to the frontend.
+    VRSBackend --> FrontendApp: Send Answer
+    deactivate VRSBackend
+
+    ' The frontend displays the answer to the user within the player UI.
+    FrontendApp --> User: Display Answer *in player UI*
+    deactivate FrontendApp
+end
+
+@enduml
+
+Full Prototype:
+
+@startuml
+skinparam packageStyle rectangle
+skinparam shadowing false
+!theme plain
+autonumber
+
+actor "User" as User
+boundary "Browser (Frontend App)" as FrontendApp
+
+box "MAM Services" #LightBlue
+    collections "MAM API" as VimeoAPI
+    entity "MAM Player (iframe)" as VimeoPlayer
+end box
+
+box "Video-RAG System Backend" #LightBlue
+    participant "VRS Backend Service" as VRSBackend
+    database "Knowledge Base (Vector DB)" as KB
+    participant "AI Language Model (LLM)" as LLM
+end box
+
+group Data Preparation (One-time, Offline)
+    VRSBackend -> KB: Process Video Content (e.g., transcribe, describe visuals)
+    KB -> KB: Store as searchable chunks/vectors
+end
+
+== Application Initialization & Video Display ==
+
+FrontendApp -> User: Displays Login Gateway
+activate FrontendApp
+
+User -> FrontendApp: Enters Token & Clicks "Login"
+
+FrontendApp -> VimeoAPI: REST API: GET /me (Validate Token)
+activate VimeoAPI
+VimeoAPI --> FrontendApp: Token Validation Result (User Info / Error)
+deactivate VimeoAPI
+
+alt Token Validation Successful
+    FrontendApp -> FrontendApp: Hides Login, Shows Main Layout
+    FrontendApp -> VimeoAPI: REST API: GET /me/projects/{ID}/videos (Fetch All)
+    activate VimeoAPI
+    VimeoAPI --> FrontendApp: Video Metadata & Embed HTML (Paged)
+    deactivate VimeoAPI
+
+    FrontendApp -> FrontendApp: Sorts Videos & Prepares UI
+    FrontendApp -> FrontendApp: Embeds iframe for 1st Video
+    FrontendApp -> VimeoPlayer: Load Player with 1st Video (via iframe src)
+    activate VimeoPlayer
+    VimeoPlayer --> FrontendApp: Video Stream Ready
+    deactivate VimeoPlayer
+
+    FrontendApp -> FrontendApp: Renders List of All Reels (Titles, Desc, Tags)
+    FrontendApp --> User: Displays Videos & Article
+
+    User -> FrontendApp: Clicks a specific Reel in the list
+    activate FrontendApp
+    FrontendApp -> FrontendApp: Updates iframe src
+    FrontendApp -> VimeoPlayer: Load Player with Selected Video (via iframe src)
+    activate VimeoPlayer
+    VimeoPlayer --> FrontendApp: New Video Stream Ready
+    deactivate VimeoPlayer
+    deactivate FrontendApp
+
+    == AI Question & Answering (In-Player) ==
+
+    User -> FrontendApp: Asks a Question *about currently playing content*\n(e.g., via chat input **in player UI**)
+    activate FrontendApp
+    FrontendApp -> VRSBackend: Send Question (+ context like video ID)
+    activate VRSBackend
+
+    VRSBackend -> KB: Find relevant chunks for the question
+    KB --> VRSBackend: Provide relevant chunks (e.g., transcript segments)
+
+    VRSBackend -> LLM: Send question + retrieved chunks (prompt engineering)
+    activate LLM
+    LLM --> VRSBackend: Generate Answer
+    deactivate LLM
+
+    VRSBackend --> FrontendApp: Send Answer
+    deactivate VRSBackend
+
+    FrontendApp --> User: Display Answer *in player UI*
+    deactivate FrontendApp
+
+else Token Validation Failed
+    FrontendApp --> User: Displays Login Error Message
+    deactivate FrontendApp
+end
+
+@enduml
