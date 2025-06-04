@@ -31,8 +31,8 @@
 
             /* --- RE-CENTERING THE LOGIN DIV --- */
             position: absolute; /* Position relative to the body */
-            top: 50%;           /* Move top edge to middle */
-            left: 50%;          /* Move left edge to middle */
+            top: 50%;            /* Move top edge to middle */
+            left: 50%;           /* Move left edge to middle */
             transform: translate(-50%, -50%); /* Shift back by half its width/height to truly center */
             margin: auto; /* Fallback/additional centering (less impactful with absolute positioning) */
             /* --- END RE-CENTERING --- */
@@ -137,10 +137,12 @@
             border: 0;
         }
 
+        /* --- VIDEO GRID CHANGES --- */
         .video-grid {
-            /* Changed to block for list layout */
-            display: block;
-            /* Removed grid-specific properties like gap, grid-template-columns */
+            display: grid; /* Changed to grid for array layout */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 3 columns, responsive */
+            gap: 20px; /* Spacing between grid items */
+            padding: 0; /* Remove default padding */
         }
 
         .video-item {
@@ -150,17 +152,15 @@
             overflow: hidden;
             transition: transform 0.2s;
             background-color: rgba(249, 249, 249, 0.9); /* Slightly opaque white for video items */
-            padding: 15px; /* Added padding for list items */
-            margin-bottom: 15px; /* Spacing between list items */
+            padding: 15px;
             box-sizing: border-box; /* Include padding in element's total width */
+            margin-bottom: 0; /* Removed margin-bottom as gap handles spacing */
         }
 
         .video-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        /* Removed .video-item img styles as thumbnails are no longer used */
 
         .video-item-info {
             padding: 0; /* Removed padding here as it's on .video-item now */
@@ -292,7 +292,7 @@
             <h3>Powerful Activism & Advocacy:</h3>
             <p>The archives document various forms of community-led initiatives and advocacy. The "Black Camden Sisters'" efforts to support women facing domestic violence <span class="reel-reference">(BL_003)</span> and Dr. Abiola's call for "unity and independent organization within African communities" <span class="reel-reference">(BL_008)</span> demonstrate powerful agency. Protests for justice reform <span class="reel-reference">(BL_020)</span> are also prominently featured. In London, domestic abuse incidents remain high; for instance, out of nearly 400,000 cases in the past four years, only one in ten led to positive outcomes like a charge or caution.</p>
             <h3>Celebrating Cultural Identity:</h3>
-            <p>These materials richly portray Black arts and culture, including ITV's "new projects supporting Black arts and culture" <span class="reel-reference">(BL_009)</span>, the role of "Black theater" <span class="reel-reference">(BL_005)</span>, and various African film series <span class="reel-reference">(BL_011)</span>, <span class="reel-reference">(BL_021)</span>. We also see the influence of musical giants like Fela Kuti, whose Afrobeat revolutionized music, and the cinematic impact of figures like Melvin Van Peebles, who pioneered Blaxploitation cinema. The contributions of Quincy Jones across music and film are also vital to acknowledge. Discussions on "Historical Contributions" <span class="reel-reference">(BL_013)</span> are vital for representation, highlighting "overlooked achievements" of Black figures and the need to "recognize Black inventors like Garrett Morgan and Louis Latimer" <span class="reel-reference">(BL_013)</span>. "Community Events" like the Leicester Carnival <span class="reel-reference">(BL_011)</span>, <span class="reel-reference">(BL_021)</span> and the Brixton Song Contest <span class="reel-reference">(BL_015)</span> further celebrating multiculturalism.</p>
+            <p>These materials richly portray Black arts and culture, including ITV's "new projects supporting Black arts and culture" <span class="reel-reference">(BL_009)</span>, the role of "Black theater" <span class="reel-reference">(BL_005)</span>, and various African film series <span class="reel-reference">(BL_011)</span>, <span class="reel-reference">(BL_021)</span>. We also see the influence of musical giants like Fela Kuti <span class="reel-reference">(BL_009)</span>, whose Afrobeat revolutionized music, and the cinematic impact of figures like Melvin Van Peebles <span class="reel-reference">(BL_004)</span>, who pioneered Blaxploitation cinema. The contributions of Quincy Jones across music and film are also vital to acknowledge. Discussions on "Historical Contributions" <span class="reel-reference">(BL_013)</span> are vital for representation, highlighting "overlooked achievements" of Black figures and the need to "recognize Black inventors like Garrett Morgan and Louis Latimer" <span class="reel-reference">(BL_013)</span>. "Community Events" like the Leicester Carnival <span class="reel-reference">(BL_011)</span>, <span class="reel-reference">(BL_021)</span> and the Brixton Song Contest <span class="reel-reference">(BL_015)</span> further celebrating multiculturalism.</p>
             <p>Beyond preservation, the collection offers immense potential for future documentary practice, academic research, and public engagement related to the Black British experience. Key themes include:</p>
             <ul>
                 <li><strong>The Continuum of Black Struggle and Resilience:</strong> These archives provide a powerful narrative of ongoing struggle against oppression, interwoven with stories of resilience, advocacy, and cultural celebration within a British context.</li>
