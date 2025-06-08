@@ -100,7 +100,8 @@ Velázquez, J. (2022). *Save Your Archive: Black Lives – Historical Friendship
 
 ## About the Author
 
-**José Velázquez, MA**, is a software architect and researcher specialising in digital preservation, cultural heritage, and open media systems. He consults for organisations including the BBC and Google and teaches on the Digital Humanities MA at the University of Pablo de Olavide (Seville).
+**José Velázquez, MA** is a software architect with over two decades of experience driving digital innovation, consulting for organisations such as the BBC, IBM, and Google. His work sits at the intersection of academia and industry, with a focus on audiovisual preservation, cultural memory, and open, interoperable systems for managing media at scale. Since 2016, José has been an Associate Lecturer on the interdisciplinary Digital Humanities Master's programme at the University of Pablo de Olavide (Seville, Spain.)
+
 
 
 
