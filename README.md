@@ -34,8 +34,11 @@ The project focused on obsolete broadcast formats including Beta SP, D1, D2 tape
 
 To enable intelligent search, a Retrieval-Augmented Generation (RAG) system was deployed. This system segments archival content (e.g., transcripts and annotations) into indexed chunks. When a query is issued, the relevant chunks are retrieved and passed to an LLM, enabling accurate, context-aware responses.
 
-> **Figure 1**: High-level overview of the RAG-enhanced MAM prototype  
-> **Figure 2**: Detailed architecture showing content ingestion, vector storage, and query response flow
+![image](https://github.com/user-attachments/assets/2c9a52ad-c6d3-4947-8d93-871d64cd5abd)
+Figure 1: High-level overview of the RAG-enhanced MAM prototype  
+
+![image](https://github.com/user-attachments/assets/2485e596-e281-406d-82d6-617a7b625b5c)
+Figure 2: Detailed architecture showing content ingestion, vector storage, and query response flow
 
 Future iterations will transition to fully open-source components such as `ByteDance-Seed/BAGEL-7B-MoT`.
 
