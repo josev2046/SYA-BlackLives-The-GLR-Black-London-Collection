@@ -1,4 +1,4 @@
-# Digitising Black British Histories: Methodological Innovations and Cultural Significance in the GLR Black London Archive
+## Digitising Black British Histories: Methodological Innovations and Cultural Significance in the GLR Black London Archive
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15593675.svg)](https://doi.org/10.5281/zenodo.15593675)
 
