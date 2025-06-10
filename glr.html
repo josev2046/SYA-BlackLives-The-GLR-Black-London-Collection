@@ -11,10 +11,10 @@
 
             /* --- BACKGROUND IMAGE STYLES --- */
             background-image: url('reels.png'); /* Make sure reels.png is in the same directory as this HTML file */
-            background-size: cover;          /* Scales the image to cover the entire body */
-            background-repeat: no-repeat;    /* Prevents the image from repeating */
+            background-size: cover;           /* Scales the image to cover the entire body */
+            background-repeat: no-repeat;     /* Prevents the image from repeating */
             background-position: center center; /* Centers the image */
-            background-attachment: fixed;    /* Keeps the background image fixed while scrolling */
+            background-attachment: fixed;     /* Keeps the background image fixed while scrolling */
 
             /* Ensure body covers full viewport for absolute positioning of login-container */
             min-height: 100vh;
@@ -31,8 +31,8 @@
 
             /* --- RE-CENTERING THE LOGIN DIV --- */
             position: absolute; /* Position relative to the body */
-            top: 50%;            /* Move top edge to middle */
-            left: 50%;           /* Move left edge to middle */
+            top: 50%;           /* Move top edge to middle */
+            left: 50%;          /* Move left edge to middle */
             transform: translate(-50%, -50%); /* Shift back by half its width/height to truly center */
             margin: auto; /* Fallback/additional centering (less impactful with absolute positioning) */
             /* --- END RE-CENTERING --- */
@@ -263,6 +263,37 @@
             margin: 0 4px 4px 0; /* Added margin for spacing between wrapped elements */
             font-size: 0.95em; /* Slightly larger to enhance visibility */
         }
+
+        /* --- Search Bar Styles --- */
+        .search-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center; /* Center the input and message */
+        }
+
+        .search-container input[type="text"] {
+            width: 80%; /* Adjust width as needed */
+            max-width: 500px; /* Max width for larger screens */
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px; /* Rounded search bar */
+            font-size: 1em;
+            outline: none; /* Remove outline on focus */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .search-container input[type="text"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0,123,255,0.5);
+        }
+
+        .search-message {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.5;
+        }
+
     </style>
 </head>
 <body>
@@ -282,6 +313,11 @@
                 <div id="featuredIframe"></div>
             </div>
 
+            <div class="search-container">
+                <input type="text" id="videoSearchInput" placeholder="Search titles, descriptions, or tags...">
+                <p class="search-message">Use the **search bar** to filter the video collection by metadata found in the title, descriptions, and tags.  
+                <br>For more in-depth, contextual insights directly within video content—in natural language—use the **Ask AI tab in-player**.</p>
+            </div>
             <h2>Currently Available Reels</h2>
             <div class="video-grid" id="videoGrid"></div>
         </div>
@@ -313,6 +349,7 @@
         const VIMEO_PROJECT_ID = "25424026"; // <--- REPLACE WITH YOUR ACTUAL VIMEO PROJECT ID
 
         let videoReferenceMap = new Map(); // Global map to store video data by BL_XXX ID
+        let allFetchedVideos = []; // Global array to store all fetched videos
 
         // --- Login Gateway Functions ---
         async function attemptLoginWithToken() {
@@ -359,9 +396,7 @@
                 return;
             }
 
-            let allVideos = [];
-            // Request 'embed.html' as it still provides the most complete embed info,
-            // even if we're not explicitly using a custom preset ID.
+            allFetchedVideos = []; // Reset global array
             let currentPageUrl = `https://api.vimeo.com/me/projects/${VIMEO_PROJECT_ID}/videos?fields=uri,name,tags,description,pictures.sizes,embed.html&per_page=100`;
 
             try {
@@ -381,7 +416,7 @@
                     }
 
                     const data = await response.json();
-                    allVideos = allVideos.concat(data.data);
+                    allFetchedVideos = allFetchedVideos.concat(data.data);
                     currentPageUrl = data.paging.next;
 
                     // Optional: Add a small delay between requests to avoid hitting rate limits
@@ -390,15 +425,43 @@
                     // }
                 }
 
-                console.log("Total Vimeo Videos fetched:", allVideos.length);
-                if (allVideos.length > 0) {
-                    console.log("Example of first video's embed.html:", allVideos[0].embed?.html);
+                console.log("Total Vimeo Videos fetched:", allFetchedVideos.length);
+                if (allFetchedVideos.length > 0) {
+                    console.log("Example of first video's embed.html:", allFetchedVideos[0].embed?.html);
                 } else {
                     console.log("No videos fetched from the project.");
                 }
 
-                displayVideosInPlayerAndGrid(allVideos);
+                // Sort videos numerically by the number in their name once after fetching all
+                allFetchedVideos.sort((a, b) => {
+                    const nameA = a.name || "";
+                    const nameB = b.name || "";
+                    try {
+                        const numA = parseFloat(nameA.replace("BLACKLIVES_BL_", "").replace("_Vimeo", ""));
+                        const numB = parseFloat(nameB.replace("BLACKLIVES_BL_", "").replace("_Vimeo", ""));
+                        if (!isNaN(numA) && !isNaN(numB)) {
+                            return numA - numB;
+                        }
+                    } catch (e) { /* Fallback to string comparison if numerical parsing fails */ }
+                    return nameA.localeCompare(b.name || "");
+                });
+
+                // Populate videoReferenceMap
+                videoReferenceMap.clear(); // Clear previous entries
+                allFetchedVideos.forEach(video => {
+                    const videoName = video.name || "";
+                    const match = videoName.match(/BL_\d+/);
+                    if (match) {
+                        const blId = match[0]; // e.g., "BL_005"
+                        videoReferenceMap.set(blId, video);
+                    }
+                });
+
+                displayFilteredVideos(allFetchedVideos); // Display all videos initially
                 linkReelReferences(); // Call the new function to link article references
+
+                // Add event listener for search input
+                document.getElementById('videoSearchInput').addEventListener('input', filterVideos);
 
             } catch (error) {
                 console.error('Error fetching Vimeo videos:', error);
@@ -406,49 +469,31 @@
             }
         }
 
-        function displayVideosInPlayerAndGrid(videos) {
-            // Sort videos numerically by the number in their name
-            videos.sort((a, b) => {
-                const nameA = a.name || "";
-                const nameB = b.name || "";
-                try {
-                    const numA = parseFloat(nameA.replace("BLACKLIVES_BL_", "").replace("_Vimeo", ""));
-                    const numB = parseFloat(nameB.replace("BLACKLIVES_BL_", "").replace("_Vimeo", ""));
-                    if (!isNaN(numA) && !isNaN(numB)) {
-                        return numA - numB;
-                    }
-                } catch (e) { /* Fallback to string comparison if numerical parsing fails */ }
-                return nameA.localeCompare(b.name || "");
-            });
-
+        // --- Function to display videos in the grid (can be used for filtered results) ---
+        function displayFilteredVideos(videosToDisplay) {
             const featuredIframeContainer = document.getElementById('featuredIframe');
             const videoGrid = document.getElementById('videoGrid');
 
-            if (videos.length === 0) {
-                featuredIframeContainer.innerHTML = '<p style="text-align: center; color: #666;">No videos found in this project.</p>';
-                videoGrid.innerHTML = '';
+            videoGrid.innerHTML = ''; // Clear existing grid content
+
+            if (videosToDisplay.length === 0) {
+                videoGrid.innerHTML = '<p style="text-align: center; color: #666; width: 100%;">No videos found matching your search criteria.</p>';
+                // Optionally clear or show a default in the featured player if no videos are found
+                if (allFetchedVideos.length > 0) {
+                    // If no search matches, but there are overall videos, show the first overall video
+                    updateFeaturedPlayer(allFetchedVideos[0].uri.split('/').pop(), allFetchedVideos[0].embed?.html);
+                } else {
+                    featuredIframeContainer.innerHTML = '<p style="text-align: center; color: #666;">No videos found in this project.</p>';
+                }
                 return;
             }
 
-            // Populate videoReferenceMap
-            videoReferenceMap.clear(); // Clear previous entries
-            videos.forEach(video => {
-                const videoName = video.name || "";
-                const match = videoName.match(/BL_\d+/);
-                if (match) {
-                    const blId = match[0]; // e.g., "BL_005"
-                    videoReferenceMap.set(blId, video);
-                }
-            });
+            // Ensure the featured player is updated with the first video from the *filtered* list
+            const firstVideoInFilteredList = videosToDisplay[0];
+            updateFeaturedPlayer(firstVideoInFilteredList.uri.split('/').pop(), firstVideoInFilteredList.embed?.html);
 
 
-            const firstVideo = videos[0];
-            // Ensure first video is displayed initially
-            updateFeaturedPlayer(firstVideo.uri.split('/').pop(), firstVideo.embed?.html);
-
-            videoGrid.innerHTML = ''; // Clear existing grid content
-
-            videos.forEach(video => {
+            videosToDisplay.forEach(video => {
                 const videoItem = document.createElement('div');
                 videoItem.classList.add('video-item');
                 videoItem.dataset.videoId = video.uri.split('/').pop();
@@ -499,6 +544,21 @@
 
                 videoGrid.appendChild(videoItem);
             });
+        }
+
+        // --- Function to filter videos based on search input ---
+        function filterVideos() {
+            const searchTerm = document.getElementById('videoSearchInput').value.toLowerCase();
+            const filtered = allFetchedVideos.filter(video => {
+                const title = (video.name || "").toLowerCase();
+                const description = (video.description || "").toLowerCase();
+                const tags = (video.tags || []).map(tag => tag.name.toLowerCase()).join(' ');
+
+                return title.includes(searchTerm) ||
+                       description.includes(searchTerm) ||
+                       tags.includes(searchTerm);
+            });
+            displayFilteredVideos(filtered);
         }
 
         // --- Function to update the featured player ---
