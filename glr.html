@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unlocking the Power of the GLR Black London Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #007bff;
+            --primary-accent: #FF4500;
+            --primary-accent-dark: #CC3700;
+            --secondary-highlight: #FFD700;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --text-light: #777777;
+            --bg-main: #FFFFFF;
+            --bg-secondary: #F8F8F8;
+            --border-subtle: #D0D0D0;
+            --shadow-subtle: rgba(0, 0, 0, 0.18);
+            --shadow-hover: rgba(0, 0, 0, 0.25);
+            --primary-blue: #007BFF;
             --primary-blue-dark: #0056b3;
-            --text-dark: #333;
-            --text-medium: #555;
-            --text-light: #666;
-            --bg-white: #fff;
-            --bg-light-grey: #f9f9f9;
-            --border-light: #ddd;
-            --shadow-light: rgba(0, 0, 0, 0.1);
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
-            color: var(--text-dark);
+            color: var(--text-secondary);
             background-image: url('reels.png');
             background-size: cover;
             background-repeat: no-repeat;
@@ -29,68 +34,104 @@
             background-attachment: fixed;
             min-height: 100vh;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         .login-container {
-            max-width: 960px;
-            background-color: var(--bg-white);
-            padding: 30px; /* Increased padding */
-            box-shadow: 0 0 15px var(--shadow-light); /* Stronger shadow */
-            border-radius: 8px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center; /* Center content within login box */
+            max-width: 500px;
+            background-color: var(--bg-main);
+            padding: 50px;
+            box-shadow: 0 8px 30px var(--shadow-subtle);
+            border-radius: 15px;
+            text-align: center;
+            z-index: 10;
+            position: relative;
         }
 
         .main-content-wrapper {
             display: flex;
-            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
-            max-width: 1400px;
+            flex-wrap: wrap;
+            max-width: 1600px;
             margin: 50px auto;
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
-            box-shadow: 0 0 15px var(--shadow-light); /* Stronger shadow */
-            border-radius: 8px;
+            background-color: var(--bg-main);
+            box-shadow: 0 8px 30px var(--shadow-subtle);
+            border-radius: 15px;
             overflow: hidden;
-            min-height: 80vh;
+            min-height: 85vh;
+            position: relative;
+            z-index: 5;
         }
 
         .video-column {
             flex: 2;
-            padding: 30px; /* Increased padding */
+            padding: 40px;
             overflow-y: auto;
-            background-color: rgba(255, 255, 255, 0.7); /* Slightly more transparent */
-            box-sizing: border-box; /* Include padding in flex basis */
+            background-color: var(--bg-main);
+            box-sizing: border-box;
+            border-right: 1px solid var(--border-subtle);
         }
 
         .article-column {
             flex: 1;
-            padding: 30px; /* Increased padding */
-            background-color: rgba(249, 249, 249, 0.8); /* Lighter grey with more opacity */
-            border-left: 1px solid rgba(221, 221, 221, 0.6); /* Clearer separator */
+            padding: 40px;
+            background-color: var(--bg-secondary);
+            border-left: 1px solid var(--border-subtle);
             overflow-y: scroll;
-            max-height: 80vh;
+            max-height: 85vh;
             box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            align-self: flex-start;
         }
 
-        h1, h2 {
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
             text-align: center;
-            color: var(--text-medium);
-            margin-bottom: 25px; /* Added spacing below headings */
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            font-weight: 700;
         }
 
         .login-container h1 {
-            color: var(--text-dark); /* Darker for login heading */
-            margin-bottom: 30px;
+            color: var(--primary-accent);
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            letter-spacing: -0.03em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .article-column h2,
         .article-column h3 {
             text-align: left;
-            color: var(--text-dark);
-            margin-top: 1.8em; /* More space above */
-            margin-bottom: 1em; /* More space below */
+            color: var(--primary-accent);
+            margin-top: 2.5em;
+            margin-bottom: 1.5em;
+            font-weight: 600;
+        }
+
+        .article-column h2 {
+            font-size: 2em;
+            border-bottom: 2px solid var(--border-subtle);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .article-column h3 {
+            font-size: 1.6em;
         }
 
         .login-form {
@@ -100,46 +141,67 @@
         }
 
         .login-form input[type="text"] {
-            padding: 12px; /* Increased padding */
-            margin-bottom: 20px; /* Increased spacing */
-            border: 1px solid var(--border-light);
-            border-radius: 6px; /* Slightly less rounded */
-            width: 90%; /* Wider input */
-            max-width: 350px; /* Increased max-width */
-            font-size: 1.1em; /* Larger text */
+            padding: 18px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            font-size: 1.2em;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .login-form input[type="text"]:focus {
+            border-color: var(--primary-accent);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1), 0 0 0 3px rgba(255, 69, 0, 0.2);
+            outline: none;
         }
 
         .login-form button {
-            background-color: var(--primary-blue);
-            color: var(--bg-white);
-            padding: 12px 25px; /* Increased padding */
+            background-color: var(--primary-accent);
+            color: var(--bg-main);
+            padding: 18px 40px;
             border: none;
-            border-radius: 30px; /* More rounded, but not fully circular */
+            border-radius: 40px;
             cursor: pointer;
-            font-size: 1.1em; /* Larger text */
-            transition: background-color 0.2s ease-in-out; /* Smooth transition */
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
         }
 
         .login-form button:hover {
-            background-color: var(--primary-blue-dark);
+            background-color: var(--primary-accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 69, 0, 0.4);
+        }
+
+        .login-form button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(255, 69, 0, 0.2);
         }
 
         .login-error {
-            color: red;
+            color: var(--primary-accent);
             text-align: center;
-            margin-top: 15px;
-            font-size: 0.95em;
+            margin-top: 25px;
+            font-size: 1.05em;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 600;
         }
 
         .featured-video {
-            margin-bottom: 40px; /* More space below featured video */
+            margin-bottom: 60px;
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            background-color: #000;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Added shadow to video player */
+            background-color: var(--text-primary);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         .featured-video iframe {
@@ -153,25 +215,29 @@
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Slightly smaller min-width for more columns */
-            gap: 25px; /* Increased gap */
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 35px;
             padding: 0;
         }
 
         .video-item {
             cursor: pointer;
-            border: 1px solid rgba(221, 221, 221, 0.8); /* Stronger border */
-            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transitions */
-            background-color: rgba(249, 249, 249, 0.95); /* Nearly opaque white for video items */
-            padding: 20px; /* Increased padding */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s;
+            background-color: var(--bg-main);
+            padding: 28px;
             box-sizing: border-box;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .video-item:hover {
-            transform: translateY(-8px); /* More pronounced lift */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+            transform: translateY(-12px);
+            box-shadow: 0 12px 25px var(--shadow-hover);
+            background-color: var(--bg-secondary);
         }
 
         .video-item-info {
@@ -179,18 +245,20 @@
         }
 
         .video-item-info h3 {
-            font-size: 1.2em; /* Slightly larger title */
-            margin: 0 0 8px 0; /* More space below title */
-            color: var(--text-dark);
+            font-size: 1.45em;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
             white-space: normal;
             word-wrap: break-word;
+            font-weight: 700;
+            line-height: 1.3;
         }
 
         .video-item-info p.description {
-            font-size: 0.95em; /* Slightly larger description */
-            color: var(--text-light);
-            margin: 0 0 12px 0; /* More margin below description */
-            line-height: 1.7; /* Increased line-height for better readability */
+            font-size: 1.05em;
+            color: var(--text-secondary);
+            margin: 0 0 18px 0;
+            line-height: 1.8;
             white-space: normal;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -198,7 +266,7 @@
         }
 
         .video-item-info p.description.truncated {
-            max-height: 5.1em; /* Approx 3 lines with new line-height */
+            max-height: 5.8em;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
@@ -208,135 +276,160 @@
             display: inline-block;
             background: none;
             border: none;
-            color: var(--primary-blue);
+            color: var(--primary-accent);
             cursor: pointer;
-            font-size: 0.9em; /* Slightly larger read more */
+            font-size: 1em;
             padding: 0;
-            margin-top: 5px;
+            margin-top: 10px;
             text-align: left;
-            text-decoration: underline;
-            transition: color 0.2s ease-in-out;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
         }
 
         .read-more-btn:hover {
-            color: var(--primary-blue-dark);
+            color: var(--primary-accent-dark);
+            text-decoration: underline;
         }
 
         .video-tags {
-            margin-top: 15px; /* More space above tags */
-            font-size: 0.85em; /* Slightly larger tags */
-            color: #888;
+            margin-top: 25px;
+            font-size: 0.9em;
+            color: var(--text-primary);
             display: flex;
             flex-wrap: wrap;
-            gap: 8px; /* More space between tags */
+            gap: 10px;
         }
 
         .video-tags span {
-            background-color: #e6e6e6; /* Lighter tag background */
-            padding: 4px 10px; /* More padding */
-            border-radius: 15px; /* More rounded tags */
-            color: #444; /* Darker tag text */
+            background-color: rgba(255, 69, 0, 0.15);
+            padding: 8px 15px;
+            border-radius: 25px;
+            color: var(--primary-accent-dark);
             white-space: nowrap;
+            font-weight: 600;
+            border: 1px solid rgba(255, 69, 0, 0.3);
         }
 
-        /* Article specific styles */
         .article-column p,
         .article-column ul,
         .article-column li {
-            line-height: 1.7; /* Unified line height for readability */
-            margin-bottom: 1.2em; /* Consistent spacing between paragraphs and list items */
+            line-height: 1.9;
+            margin-bottom: 1.8em;
             text-align: justify;
-            color: var(--text-light);
-            font-size: 0.95em; /* Match video description font size */
+            color: var(--text-secondary);
+            font-size: 1.05em;
         }
         .article-column ul {
-            padding-left: 25px; /* Indent list items */
-            margin-bottom: 1.5em; /* Ensure consistent spacing after the list */
+            padding-left: 35px;
+            margin-bottom: 2.5em;
         }
         .article-column li {
-            margin-bottom: 0.7em; /* Slightly less space between list items */
+            margin-bottom: 1em;
         }
         .article-column strong {
-            color: var(--text-dark);
+            color: var(--text-primary);
+            font-weight: 700;
         }
 
         .reel-reference {
-            font-weight: bold;
-            background-color: rgba(0, 123, 255, 0.08); /* Light blue background for reference */
-            padding: 3px 7px; /* Adjusted padding */
-            border-radius: 5px;
+            font-weight: 700;
+            background-color: rgba(0, 123, 255, 0.1);
+            padding: 6px 10px;
+            border-radius: 8px;
             display: inline-block;
-            margin: 0 5px 5px 0; /* Added margin for spacing between wrapped elements */
-            font-size: 0.98em; /* Slightly larger to enhance visibility */
-            color: var(--primary-blue); /* Text color for link */
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            margin: 0 8px 8px 0;
+            font-size: 1.05em;
+            color: var(--primary-blue);
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.1s;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .reel-reference:hover {
-            background-color: rgba(0, 123, 255, 0.15); /* Darker background on hover */
+            background-color: rgba(0, 123, 255, 0.2);
             color: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            text-decoration: underline;
+        }
+        .reel-reference:active {
+            transform: translateY(0);
         }
 
-        /* Search Bar Styles */
         .search-container {
-            margin-top: 30px;
-            margin-bottom: 30px;
+            margin-top: 50px;
+            margin-bottom: 50px;
             text-align: center;
         }
 
         .search-container input[type="text"] {
             width: 90%;
-            max-width: 550px;
-            padding: 12px 20px; /* Increased padding */
-            border: 1px solid #bbb; /* Slightly darker border */
-            border-radius: 25px; /* More rounded */
-            font-size: 1.05em; /* Slightly larger font */
+            max-width: 650px;
+            padding: 18px 30px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 35px;
+            font-size: 1.15em;
             outline: none;
-            box-shadow: inset 0 1px 4px rgba(0,0,0,0.1); /* More prominent inner shadow */
+            box-shadow: inset 0 3px 8px rgba(0,0,0,0.1);
             transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
 
         .search-container input[type="text"]:focus {
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 8px rgba(0,123,255,0.4); /* More prominent glow */
+            border-color: var(--primary-accent);
+            box-shadow: inset 0 3px 8px rgba(0,0,0,0.1), 0 0 0 4px rgba(255, 69, 0, 0.25);
         }
 
         .search-message {
-            margin-top: 15px;
-            font-size: 0.9em;
-            color: var(--text-medium);
-            line-height: 1.6;
-            max-width: 800px; /* Constrain message width */
+            margin-top: 25px;
+            font-size: 1em;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            text-align: center;
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
             .main-content-wrapper {
-                flex-direction: column; /* Stack columns vertically */
-                margin: 30px auto;
+                max-width: 95%;
+            }
+            .video-column {
+                flex: 3;
+            }
+            .article-column {
+                flex: 1.5;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .main-content-wrapper {
+                flex-direction: column;
+                margin: 40px auto;
+                max-width: 95%;
+                min-height: auto;
             }
 
             .video-column, .article-column {
-                flex: none; /* Remove flex sizing */
-                width: 100%; /* Take full width */
-                max-height: none; /* Remove max-height for scrolling issues */
-                overflow-y: visible; /* Allow content to push height */
-                padding: 20px;
+                padding: 30px;
+                border-right: none;
             }
 
             .article-column {
                 border-left: none;
-                border-top: 1px solid rgba(221, 221, 221, 0.6); /* Add top border for separation */
+                border-top: 1px solid var(--border-subtle);
+                max-height: none;
+                overflow-y: visible;
+                position: static;
             }
 
             .video-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust grid for smaller screens */
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 25px;
             }
 
             .login-container {
-                padding: 20px;
+                padding: 30px;
             }
 
             .login-form input[type="text"] {
@@ -344,21 +437,86 @@
             }
         }
 
-        @media (max-width: 576px) {
-            .login-container {
-                max-width: 90%;
-            }
-
-            .login-form input[type="text"] {
-                max-width: 280px;
-            }
-
+        @media (max-width: 768px) {
             h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
             h2 {
-                font-size: 1.5em;
+                font-size: 1.8em;
+            }
+
+            .login-container h1 {
+                font-size: 2.5em;
+            }
+
+            .login-form input[type="text"] {
+                max-width: 300px;
+                font-size: 1.1em;
+            }
+
+            .login-form button {
+                font-size: 1.1em;
+                padding: 15px 30px;
+            }
+
+            .video-column, .article-column {
+                padding: 20px;
+            }
+
+            .video-item {
+                padding: 20px;
+            }
+
+            .video-item-info h3 {
+                font-size: 1.25em;
+            }
+
+            .video-item-info p.description {
+                font-size: 0.95em;
+            }
+
+            .video-tags span {
+                padding: 6px 12px;
+                font-size: 0.88em;
+            }
+
+            .article-column p,
+            .article-column ul,
+            .article-column li {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                max-width: 90%;
+                padding: 25px;
+            }
+            .main-content-wrapper {
+                margin: 20px auto;
+                border-radius: 10px;
+            }
+            .video-column, .article-column {
+                padding: 15px;
+            }
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .featured-video {
+                margin-bottom: 30px;
+            }
+            .search-container {
+                margin-top: 25px;
+                margin-bottom: 25px;
+            }
+            .search-container input[type="text"] {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
+            .search-message {
+                font-size: 0.9em;
             }
         }
     </style>
@@ -367,6 +525,7 @@
 
     <div class="login-container" id="loginGateway">
         <h1>SYA #BlackLives: The GLR Black London Collection</h1>
+        
         <div class="login-form">
             <input type="text" id="tokenInput" placeholder="Enter credentials">
             <button onclick="attemptLoginWithToken()">Login</button>
@@ -382,29 +541,29 @@
 
             <div class="search-container">
                 <input type="text" id="videoSearchInput" placeholder="Search titles, descriptions, or tags...">
-                <p class="search-message">Use the **search bar** to filter the video collection by metadata found in the title, descriptions, and tags.
-                <br>For more in-depth, contextual insights directly within video content—in natural language—use the **Ask AI tab in-player**.</p>
+                <p class="search-message">Use the <strong>search bar</strong> to filter the video collection by metadata found in the title, descriptions, and tags.
+                <br>For more in-depth, contextual insights directly within video content—in natural language—use the <strong>Ask AI tab in-player</strong>.</p>
             </div>
             <h2>Available Reels</h2>
             <div class="video-grid" id="videoGrid"></div>
         </div>
 
         <div class="article-column">
-            <p>The "GLR Black London" reels offer a vibrant and nuanced historical record, revealing:</p>
-            <h3>Political and Social Activism:</h3>
-            <p>The archives vividly document the ongoing struggle for civil rights and fair representation in the UK. We see discussions on "race equality, immigration rules, and voting rights for immigrants" amidst "rising racism" and "anticipated violence in 1992" <span class="reel-reference">(BL_005)</span>. The echoes of global movements, like the Rodney King case and subsequent London protests <span class="reel-reference">(BL_020)</span>, highlight interconnectedness. Key moments include the appointment of Herman Ouseley as the first Black chairman of the Commission for Racial Equality <span class="reel-reference">(BL_009)</span> and discussions around police "cultural awareness training" <span class="reel-reference">(BL_014)</span>.</p>
-            <h3>Addressing Systemic Racism and Discrimination:</h3>
-            <p>The collection unflinchingly exposes systemic issues within British society. The **Criminal Justice System** is a recurring focus, with content examining the "impact of the Criminal Justice Act on Black individuals" <span class="reel-reference">(BL_008)</span> and calls for "anti-racist training" <span class="reel-reference">(BL_020)</span>. For context, in 2022, Black defendants in England and Wales were **more likely to receive a custodial sentence** than White British defendants, even when controlling for other factors (Ministry of Justice, 2022). Black prisoners also served a **greater proportion of their original sentence in custody** (68% in 2022) compared to White prisoners (59%). Concerns about **Health Disparities** are explicitly mentioned, particularly "health disparities among Black women" <span class="reel-reference">(BL_008)</span> and within the "justice system" <span class="reel-reference">(BL_004)</span>. For instance, Black women in the UK face an almost **three-fold higher risk of maternal mortality** compared to White women. We also find evidence of **Underrepresentation**. In the UK Civil Service as of March 2024, only **4.5% of civil servants whose ethnicity was known were Black**, compared to 80.7% of the working-age population identifying as White in the 2021 Census. Local "**Housing/Community Issues**" in Brixton <span class="reel-reference">(BL_020)</span> further paint a picture of racial tensions.</p>
-            <h3>Powerful Activism & Advocacy:</h3>
-            <p>The archives document various forms of community-led initiatives and advocacy. The "**Black Camden Sisters**'" efforts to support women facing domestic violence <span class="reel-reference">(BL_003)</span> and Dr. Abiola's call for "**unity and independent organization within African communities**" <span class="reel-reference">(BL_008)</span> demonstrate powerful agency. Protests for justice reform <span class="reel-reference">(BL_020)</span> are also prominently featured. In London, domestic abuse incidents remain high; for instance, out of nearly 400,000 cases in the past four years, only **one in ten led to positive outcomes** like a charge or caution.</p>
-            <h3>Celebrating Cultural Identity:</h3>
-            <p>These materials richly portray Black arts and culture, including ITV's "new projects supporting Black arts and culture" <span class="reel-reference">(BL_009)</span>, the role of "**Black theater**" <span class="reel-reference">(BL_005)</span>, and various African film series <span class="reel-reference">(BL_011)</span>, <span class="reel-reference">(BL_021)</span>. We also see the influence of musical giants like **Fela Kuti** <span class="reel-reference">(BL_009)</span>, whose Afrobeat revolutionized music, and the cinematic impact of figures like **Melvin Van Peebles** <span class="reel-reference">(BL_004)</span>, who pioneered Blaxploitation cinema. The contributions of **Quincy Jones** across music and film are also vital to acknowledge. Discussions on "**Historical Contributions**" <span class="reel-reference">(BL_013)</span> are vital for representation, highlighting "**overlooked achievements**" of Black figures and the need to "recognize Black inventors like **Garrett Morgan** and **Louis Latimer**" <span class="reel-reference">(BL_013)</span>. "**Community Events**" like the Leicester Carnival <span class="reel-reference">(BL_011)</span>, <span class="reel-reference">(BL_021)</span> and the Brixton Song Contest <span class="reel-reference">(BL_015)</span> further celebrating multiculturalism. The **Power of Art and Culture** is a dominant theme across music, film, poetry, and theatre.</p>
+            <p><strong>The "GLR Black London" reels offer a vibrant and nuanced historical record, revealing:</strong></p>
+            <h2>Political and Social Activism:</h2>
+            <p>The archives vividly document the ongoing struggle for civil rights and fair representation in the UK. We see discussions on "race equality, immigration rules, and voting rights for immigrants" amidst "rising racism" and "anticipated violence in 1992" <span class="reel-reference" data-bl-id="BL_005">(BL_005)</span>. The echoes of global movements, like the Rodney King case and subsequent London protests <span class="reel-reference" data-bl-id="BL_020">(BL_020)</span>, highlight interconnectedness. Key moments include the appointment of Herman Ouseley as the first Black chairman of the Commission for Racial Equality <span class="reel-reference" data-bl-id="BL_009">(BL_009)</span> and discussions around police "cultural awareness training" <span class="reel-reference" data-bl-id="BL_014">(BL_014)</span>.</p>
+            <h2>Addressing Systemic Racism and Discrimination:</h2>
+            <p>The collection unflinchingly exposes systemic issues within British society. The <strong>Criminal Justice System</strong> is a recurring focus, with content examining the "impact of the Criminal Justice Act on Black individuals" <span class="reel-reference" data-bl-id="BL_008">(BL_008)</span> and calls for "anti-racist training" <span class="reel-reference" data-bl-id="BL_020">(BL_020)</span>. For context, in 2022, Black defendants in England and Wales were <strong>more likely to receive a custodial sentence</strong> than White British defendants, even when controlling for other factors (Ministry of Justice, 2022). Black prisoners also served a <strong>greater proportion of their original sentence in custody</strong> (68% in 2022) compared to White prisoners (59%). Concerns about <strong>Health Disparities</strong> are explicitly mentioned, particularly "health disparities among Black women" <span class="reel-reference" data-bl-id="BL_008">(BL_008)</span> and within the "justice system" <span class="reel-reference" data-bl-id="BL_004">(BL_004)</span>. For instance, Black women in the UK face an almost <strong>three-fold higher risk of maternal mortality</strong> compared to White women. We also find evidence of <strong>Underrepresentation</strong>. In the UK Civil Service as of March 2024, only <strong>4.5% of civil servants whose ethnicity was known were Black</strong>, compared to 80.7% of the working-age population identifying as White in the 2021 Census. Local "<strong>Housing/Community Issues</strong>" in Brixton <span class="reel-reference" data-bl-id="BL_020">(BL_020)</span> further paint a picture of racial tensions.</p>
+            <h2>Powerful Activism & Advocacy:</h2>
+            <p>The archives document various forms of community-led initiatives and advocacy. The "<strong>Black Camden Sisters</strong>'" efforts to support women facing domestic violence <span class="reel-reference" data-bl-id="BL_003">(BL_003)</span> and Dr. Abiola's call for "<strong>unity and independent organization within African communities</strong>" <span class="reel-reference" data-bl-id="BL_008">(BL_008)</span> demonstrate powerful agency. Protests for justice reform <span class="reel-reference" data-bl-id="BL_020">(BL_020)</span> are also prominently featured. In London, domestic abuse incidents remain high; for instance, out of nearly 400,000 cases in the past four years, only <strong>one in ten led to positive outcomes</strong> like a charge or caution.</p>
+            <h2>Celebrating Cultural Identity:</h2>
+            <p>These materials richly portray Black arts and culture, including ITV's "new projects supporting Black arts and culture" <span class="reel-reference" data-bl-id="BL_009">(BL_009)</span>, the role of "<strong>Black theater</strong>" <span class="reel-reference" data-bl-id="BL_005">(BL_005)</span>, and various African film series <span class="reel-reference" data-bl-id="BL_011">(BL_011)</span>, <span class="reel-reference" data-bl-id="BL_021">(BL_021)</span>. We also see the influence of musical giants like <strong>Fela Kuti</strong> <span class="reel-reference" data-bl-id="BL_009">(BL_009)</span>, whose Afrobeat revolutionized music, and the cinematic impact of figures like <strong>Melvin Van Peebles</strong> <span class="reel-reference" data-bl-id="BL_004">(BL_004)</span>, who pioneered Blaxploitation cinema. The contributions of <strong>Quincy Jones</strong> across music and film are also vital to acknowledge. Discussions on "<strong>Historical Contributions</strong>" <span class="reel-reference" data-bl-id="BL_013">(BL_013)</span> are vital for representation, highlighting "<strong>overlooked achievements</strong>" of Black figures and the need to "recognize Black inventors like <strong>Garrett Morgan</strong> and <strong>Louis Latimer</strong>" <span class="reel-reference" data-bl-id="BL_013">(BL_013)</span>. "<strong>Community Events</strong>" like the Leicester Carnival <span class="reel-reference" data-bl-id="BL_011">(BL_011)</span>, <span class="reel-reference" data-bl-id="BL_021">(BL_021)</span> and the Brixton Song Contest <span class="reel-reference" data-bl-id="BL_015">(BL_015)</span> further celebrating multiculturalism. The <strong>Power of Art and Culture</strong> is a dominant theme across music, film, poetry, and theatre.</p>
             <p>Beyond preservation, the collection offers immense potential for future documentary practice, academic research, and public engagement related to the Black British experience. Key themes include:</p>
             <ul>
                 <li><strong>The Continuum of Black Struggle and Resilience:</strong> These archives provide a powerful narrative of ongoing struggle against oppression, interwoven with stories of resilience, advocacy, and cultural celebration within a British context.</li>
-                <li><strong>Societal Challenges & Human Stories:</strong> The collection highlights significant societal challenges, from recurring themes of **Domestic Violence** <span class="reel-reference">(BL_003)</span>, <span class="reel-reference">(BL_014)</span>, <span class="reel-reference">(BL_040)</span> and touches on **Mental Health & Addiction** <span class="reel-reference">(BL_027)</span>, <span class="reel-reference">(BL_029)</span>, to **Challenges Faced by Vulnerable Groups** <span class="reel-reference">(BL_012)</span>, <span class="reel-reference">(BL_015)</span>. We also find explorations of **Ethical Dilemmas in Science & Society** <span class="reel-reference">(BL_002)</span>, <span class="reel-reference">(BL_038)</span>, <span class="reel-reference">(BL_039)</span>.</li>
+                <li><strong>Societal Challenges & Human Stories:</strong> The collection highlights significant societal challenges, from recurring themes of <strong>Domestic Violence</strong> <span class="reel-reference" data-bl-id="BL_003">(BL_003)</span>, <span class="reel-reference" data-bl-id="BL_014">(BL_014)</span>, <span class="reel-reference" data-bl-id="BL_040">(BL_040)</span> and touches on <strong>Mental Health & Addiction</strong> <span class="reel-reference" data-bl-id="BL_027">(BL_027)</span>, <span class="reel-reference" data-bl-id="BL_029">(BL_029)</span>, to <strong>Challenges Faced by Vulnerable Groups</strong> <span class="reel-reference" data-bl-id="BL_012">(BL_012)</span>, <span class="reel-reference" data-bl-id="BL_015">(BL_015)</span>. We also find explorations of <strong>Ethical Dilemmas in Science & Society</strong> <span class="reel-reference" data-bl-id="BL_002">(BL_002)</span>, <span class="reel-reference" data-bl-id="BL_038">(BL_038)</span>, <span class="reel-reference" data-bl-id="BL_039">(BL_039)</span>.</li>
 
-                <li><strong>UK Specific Issues & Institutions:</strong> The archives provide granular detail on UK-specific concerns, including **British Politics & Governance** <span class="reel-reference">(BL_004)</span>, <span class="reel-reference">(BL_005)</span>, <span class="reel-reference">(BL_009)</span>, **Police and Community Relations** <span class="reel-reference">(BL_006)</span>, <span class="reel-reference">(BL_026)</span>, and **Infrastructure & Economy** issues <span class="reel-reference">(BL_007)</span>, <span class="reel-reference">(BL_009)</span>, <span class="reel-reference">(BL_012)</span>, <span class="reel-reference">(BL_004)</span>, <span class="reel-reference">(BL_024)</span>, <span class="reel-reference">(BL_029)</span>.</li>
+                <li><strong>UK Specific Issues & Institutions:</strong> The archives provide granular detail on UK-specific concerns, including <strong>British Politics & Governance</strong> <span class="reel-reference" data-bl-id="BL_004">(BL_004)</span>, <span class="reel-reference" data-bl-id="BL_005">(BL_005)</span>, <span class="reel-reference" data-bl-id="BL_009">(BL_009)</span>, <strong>Police and Community Relations</strong> <span class="reel-reference" data-bl-id="BL_006">(BL_006)</span>, <span class="reel-reference" data-bl-id="BL_026">(BL_026)</span>, and <strong>Infrastructure & Economy</strong> issues <span class="reel-reference" data-bl-id="BL_007">(BL_007)</span>, <span class="reel-reference" data-bl-id="BL_009">(BL_009)</span>, <span class="reel-reference" data-bl-id="BL_012">(BL_012)</span>, <span class="reel-reference" data-bl-id="BL_004">(BL_004)</span>, <span class="reel-reference" data-bl-id="BL_024">(BL_024)</span>, <span class="reel-reference" data-bl-id="BL_029">(BL_029)</span>.</li>
             </ul>
         </div>
     </div>
@@ -415,10 +574,9 @@
         let VIMEO_ACCESS_TOKEN = null;
         const VIMEO_PROJECT_ID = "25424026"; // <--- REPLACE WITH YOUR ACTUAL VIMEO PROJECT ID
 
-        let videoReferenceMap = new Map(); // Global map to store video data by BL_XXX ID
-        let allFetchedVideos = []; // Global array to store all fetched videos
+        let videoReferenceMap = new Map();
+        let allFetchedVideos = [];
 
-        // --- Login Gateway Functions ---
         async function attemptLoginWithToken() {
             const tokenInput = document.getElementById('tokenInput').value.trim();
             const loginError = document.getElementById('loginError');
@@ -431,7 +589,6 @@
             VIMEO_ACCESS_TOKEN = tokenInput;
 
             try {
-                // 1. Validate token by fetching user info (basic check)
                 const testUrl = `https://api.vimeo.com/me?fields=uri`;
                 const response = await fetch(testUrl, {
                     headers: {
@@ -443,9 +600,8 @@
                     throw new Error(`Authentication failed (Status: ${response.status}).`);
                 }
 
-                // 2. Proceed to fetch and display videos
                 document.getElementById('loginGateway').style.display = 'none';
-                document.getElementById('mainContentWrapper').style.display = 'flex'; // Changed to mainContentWrapper
+                document.getElementById('mainContentWrapper').style.display = 'flex';
                 fetchAllVimeoVideosAndDisplay();
 
             } catch (error) {
@@ -456,14 +612,13 @@
             }
         }
 
-        // --- Vimeo API Functions to fetch ALL videos ---
         async function fetchAllVimeoVideosAndDisplay() {
             if (!VIMEO_ACCESS_TOKEN) {
                 console.error("No Vimeo access token available. Login required.");
                 return;
             }
 
-            allFetchedVideos = []; // Reset global array
+            allFetchedVideos = [];
             let currentPageUrl = `https://api.vimeo.com/me/projects/${VIMEO_PROJECT_ID}/videos?fields=uri,name,tags,description,pictures.sizes,embed.html&per_page=100`;
 
             try {
@@ -486,10 +641,6 @@
                     allFetchedVideos = allFetchedVideos.concat(data.data);
                     currentPageUrl = data.paging.next;
 
-                    // Optional: Add a small delay between requests to avoid hitting rate limits
-                    // if (currentPageUrl) {
-                    //      await new Promise(resolve => setTimeout(resolve, 200));
-                    // }
                 }
 
                 console.log("Total Vimeo Videos fetched:", allFetchedVideos.length);
@@ -499,7 +650,6 @@
                     console.log("No videos fetched from the project.");
                 }
 
-                // Sort videos numerically by the number in their name once after fetching all
                 allFetchedVideos.sort((a, b) => {
                     const nameA = a.name || "";
                     const nameB = b.name || "";
@@ -509,25 +659,23 @@
                         if (!isNaN(numA) && !isNaN(numB)) {
                             return numA - numB;
                         }
-                    } catch (e) { /* Fallback to string comparison if numerical parsing fails */ }
+                    } catch (e) { }
                     return nameA.localeCompare(b.name || "");
                 });
 
-                // Populate videoReferenceMap
-                videoReferenceMap.clear(); // Clear previous entries
+                videoReferenceMap.clear();
                 allFetchedVideos.forEach(video => {
                     const videoName = video.name || "";
                     const match = videoName.match(/BL_\d+/);
                     if (match) {
-                        const blId = match[0]; // e.g., "BL_005"
+                        const blId = match[0];
                         videoReferenceMap.set(blId, video);
                     }
                 });
 
-                displayFilteredVideos(allFetchedVideos); // Display all videos initially
-                linkReelReferences(); // Call the new function to link article references
+                displayFilteredVideos(allFetchedVideos);
+                linkReelReferences();
 
-                // Add event listener for search input
                 document.getElementById('videoSearchInput').addEventListener('input', filterVideos);
 
             } catch (error) {
@@ -536,18 +684,15 @@
             }
         }
 
-        // --- Function to display videos in the grid (can be used for filtered results) ---
         function displayFilteredVideos(videosToDisplay) {
             const featuredIframeContainer = document.getElementById('featuredIframe');
             const videoGrid = document.getElementById('videoGrid');
 
-            videoGrid.innerHTML = ''; // Clear existing grid content
+            videoGrid.innerHTML = '';
 
             if (videosToDisplay.length === 0) {
                 videoGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); width: 100%;">No videos found matching your search criteria.</p>';
-                // Optionally clear or show a default in the featured player if no videos are found
                 if (allFetchedVideos.length > 0) {
-                    // If no search matches, but there are overall videos, show the first overall video
                     updateFeaturedPlayer(allFetchedVideos[0].uri.split('/').pop(), allFetchedVideos[0].embed?.html);
                 } else {
                     featuredIframeContainer.innerHTML = '<p style="text-align: center; color: var(--text-light);">No videos found in this project.</p>';
@@ -555,7 +700,6 @@
                 return;
             }
 
-            // Ensure the featured player is updated with the first video from the *filtered* list
             const firstVideoInFilteredList = videosToDisplay[0];
             updateFeaturedPlayer(firstVideoInFilteredList.uri.split('/').pop(), firstVideoInFilteredList.embed?.html);
 
@@ -577,20 +721,19 @@
                 descriptionElement.textContent = video.description || "No description provided.";
                 videoInfo.appendChild(descriptionElement);
 
-                const approxMaxChars = 100; // Character limit for truncation
+                const approxMaxChars = 100;
                 if (descriptionElement.textContent.length > approxMaxChars) {
                     descriptionElement.classList.add('truncated');
                     const readMoreBtn = document.createElement('button');
                     readMoreBtn.classList.add('read-more-btn');
                     readMoreBtn.textContent = 'Read More';
                     readMoreBtn.addEventListener('click', (event) => {
-                        event.stopPropagation(); // Prevent the video item click from firing
+                        event.stopPropagation();
                         toggleDescription(descriptionElement, readMoreBtn);
                     });
                     videoInfo.appendChild(readMoreBtn);
                 }
 
-                // --- Display Tags ---
                 if (video.tags && video.tags.length > 0) {
                     const tagsContainer = document.createElement('div');
                     tagsContainer.classList.add('video-tags');
@@ -604,7 +747,6 @@
 
                 videoItem.appendChild(videoInfo);
 
-                // Add click listener to whole item to change featured video
                 videoItem.addEventListener('click', () => {
                     updateFeaturedPlayer(video.uri.split('/').pop(), video.embed?.html);
                 });
@@ -613,7 +755,6 @@
             });
         }
 
-        // --- Function to filter videos based on search input ---
         function filterVideos() {
             const searchTerm = document.getElementById('videoSearchInput').value.toLowerCase();
             const filtered = allFetchedVideos.filter(video => {
@@ -628,16 +769,13 @@
             displayFilteredVideos(filtered);
         }
 
-        // --- Function to update the featured player ---
         function updateFeaturedPlayer(videoId, embedHtml) {
             const featuredIframeContainer = document.getElementById('featuredIframe');
             featuredIframeContainer.innerHTML = '';
 
             const videoIframe = document.createElement('iframe');
-            let finalVideoSrc = `https://player.vimeo.com/video/${videoId}`; // Default base URL
+            let finalVideoSrc = `https://player.vimeo.com/video/${videoId}`;
 
-            // Prioritize parsing SRC from Vimeo's embed.html if available.
-            // This is how Vimeo handles embed settings and privacy hashes.
             if (embedHtml) {
                 try {
                     const parser = new DOMParser();
@@ -651,16 +789,11 @@
                 }
             }
 
-            // Ensure autoplay and loop are always set for the featured player.
             const url = new URL(finalVideoSrc);
             url.searchParams.set('autoplay', '1');
             url.searchParams.set('loop', '0');
-            // If you want to explicitly hide byline, portrait, title, add them here:
-            // url.searchParams.set('byline', '0');
-            // url.searchParams.set('portrait', '0');
-            // url.searchParams.set('title', '0');
 
-            finalVideoSrc = url.toString(); // Convert the URL object back to a string
+            finalVideoSrc = url.toString();
 
             videoIframe.src = finalVideoSrc;
             videoIframe.frameBorder = '0';
@@ -676,18 +809,15 @@
             console.log(`DEBUG: Player loaded for video ${videoId}. Final SRC: ${finalVideoSrc}.`);
         }
 
-
-        // --- Helper function to get thumbnail URL (no longer directly used but kept for completeness if needed) ---
         function getThumbnailUrl(pictures) {
             const sortedSizes = pictures.filter(p => p.width).sort((a, b) => b.width - a.width);
             if (sortedSizes.length > 0) {
                 const suitableSize = sortedSizes.find(size => size.width >= 640) || sortedSizes[0];
                 return suitableSize.link;
             }
-            return 'https://via.placeholder.com/640x360?text=No+Thumbnail'; // Generic fallback image
+            return 'https://via.placeholder.com/640x360?text=No+Thumbnail';
         }
 
-        // --- Helper function to toggle description visibility ---
         function toggleDescription(descriptionElement, buttonElement) {
             if (descriptionElement.classList.contains('truncated')) {
                 descriptionElement.classList.remove('truncated');
@@ -698,29 +828,17 @@
             }
         }
 
-        // --- Function to link reel references in the article column ---
         function linkReelReferences() {
             const reelReferences = document.querySelectorAll('.article-column .reel-reference');
             reelReferences.forEach(span => {
-                const textContent = span.textContent.trim(); // e.g., "(BL_005)"
-                const match = textContent.match(/BL_\d+/);
-                if (match) {
-                    const blId = match[0]; // e.g., "BL_005"
+                const blId = span.dataset.blId;
+                if (blId) {
                     const video = videoReferenceMap.get(blId);
                     if (video) {
                         span.style.cursor = 'pointer';
-                        span.style.textDecoration = 'underline';
-                        span.style.color = 'var(--primary-blue)'; // Blue like a link
                         span.addEventListener('click', (event) => {
-                            event.stopPropagation(); // Prevent the video item click from firing
+                            event.stopPropagation();
                             updateFeaturedPlayer(video.uri.split('/').pop(), video.embed?.html);
-                        });
-                        // Add hover effect for consistency with other links
-                        span.addEventListener('mouseover', () => {
-                            span.style.color = 'var(--primary-blue-dark)'; // Darker blue on hover
-                        });
-                        span.addEventListener('mouseout', () => {
-                            span.style.color = 'var(--primary-blue)'; // Back to original blue
                         });
                     } else {
                         console.warn(`Video for reference ${blId} not found in collection.`);
