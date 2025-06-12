@@ -32,7 +32,7 @@ The project focused on obsolete broadcast formats including Beta SP, D1, D2 tape
 
 ### 3.2 Integration of RAG Architecture
 
-To enable intelligent search, a Retrieval-Augmented Generation (RAG) system was deployed. This system segments archival content (e.g., transcripts and annotations) into indexed chunks. When a query is issued, the relevant chunks are retrieved and passed to an LLM, enabling accurate, context-aware responses.
+To enable intelligent search, a <a href="https://github.com/josev2046/Intelligent-Information-Retrieval-in-Digital-Asset-Management-Systems-A-RAG-Enhanced-Approach">Retrieval-Augmented Generation (RAG) system</a> was deployed. This system segments archival content (e.g., transcripts and annotations) into indexed chunks. When a query is issued, the relevant chunks are retrieved and passed to an LLM, enabling accurate, context-aware responses.
 
 ![image](https://github.com/user-attachments/assets/2c9a52ad-c6d3-4947-8d93-871d64cd5abd)
 Figure 1: High-level overview of the RAG-enhanced MAM prototype  
